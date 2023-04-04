@@ -1,38 +1,24 @@
-import styled from 'styled-components'
+import React, { type ReactNode } from 'react'
+import { cx } from 'classix'
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-inline: auto;
-  width: min(90%, 100em);
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+type Props = {
+  children: ReactNode
+  variant?: 'normal' | 'narrow' | 'thin' | 'medium'
+  className?: string
+}
 
-  &.split {
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  &.narrow {
-    width: min(90%, 50em);
-  }
-
-  &.thin {
-    width: min(90%, 20em);
-  }
-
-  @media only screen and (min-width: 40em) {
-    &.split {
-      flex-direction: row;
-      gap: 1rem;
-    }
-    &.split > * {
-      flex-basis: 100%;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-`
+const Container = ({ children, variant = 'normal', className }: Props) => (
+  <div
+    className={cx(
+      'mx-auto flex w-11/12 flex-col content-center',
+      variant === 'narrow' && 'sm:w-6/12',
+      variant === 'thin' && 'sm:w-4/12',
+      variant === 'medium' && 'sm:w-10/12',
+      !!className && className
+    )}
+  >
+    {children}
+  </div>
+)
 
 export default Container

@@ -9,11 +9,13 @@ import '@fontsource/manrope'
 import Layout, { QueryClientProvider } from './src/components/Layout/Layout'
 import './src/styles/global.css'
 
+const headTags = []
+
 export const wrapPageElement = ({ element }) => <Layout>{element}</Layout>
 export const wrapRootElement = ({ element }) => {
   themeChange(false)
   return (
-    <HeadProvider>
+    <HeadProvider headTags={headTags}>
       <QueryClientProvider>{element}</QueryClientProvider>
     </HeadProvider>
   )

@@ -14,6 +14,14 @@ export const esTranslations = {
   landing: {
     heroTitle: 'Chatea gratis con gente de todo el mundo',
     heroContent:
-      'Totalmente gratis y sin registro. Para siempre! Pero si decides registrarte, podrás obtener grandes beneficios 👀'
+      'Totalmente gratis y sin registro. Para siempre! Pero si decides registrarte, podrás obtener grandes beneficios 👀',
+    chatNow: '¡Chatea ya!',
+    signup: 'Registrarse'
+  },
+  roles: {
+    operatorFemale: 'Operadora',
+    operatorMale: 'Operador',
+    adminMale: 'Administrador',
+    adminFemale: 'Administradora'
   }
-} as const
+}

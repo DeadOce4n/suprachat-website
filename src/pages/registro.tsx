@@ -12,7 +12,7 @@ const LoginPage = (_props: RouteComponentProps) => {
   const { signup } = useAuth()
 
   return (
-    <Container className='thin'>
+    <Container variant='thin'>
       <SignupForm
         onSubmit={(params) => signup(omit(params, ['passwordRepeat']))}
       />

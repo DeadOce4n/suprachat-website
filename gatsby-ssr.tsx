@@ -4,9 +4,11 @@ import './src/styles/global.css'
 
 import Layout, { QueryClientProvider } from './src/components/Layout/Layout'
 
+const headTags = []
+
 export const wrapPageElement = ({ element }) => <Layout>{element}</Layout>
 export const wrapRootElement = ({ element }) => (
-  <HeadProvider>
+  <HeadProvider headTags={headTags}>
     <QueryClientProvider>{element}</QueryClientProvider>
   </HeadProvider>
 )

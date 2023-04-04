@@ -11,23 +11,26 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
-        accent: ['Poppins', 'sans-serif']
+        accent: ['Poppins', 'sans-serif'],
+        logo: ['BabaPro']
       }
     }
   },
   daisyui: {
+    logs: false,
     themes: [
       {
         dark: {
           primary: '#FFE36F',
-          secondary: '#F000B8',
-          accent: '#37CDBE',
-          neutral: '#3D4451',
-          'base-100': '#000A14',
-          info: '#3ABFF8',
+          secondary: '#9DACFF',
+          accent: '#FFA90A',
+          neutral: '#81859C',
+          'base-100': '#010813',
+          info: '#62BDF2',
           success: '#36D399',
           warning: '#FBBD23',
-          error: '#F87272'
+          error: '#F87272',
+          'fg-alt': '#E9E0D7'
         }
       }
     ]

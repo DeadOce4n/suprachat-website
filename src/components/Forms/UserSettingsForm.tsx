@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import Form from '@components/Form/Form'
-import Button from '@components/Button/Button'
+import Form from '@components/Form'
+import Button from '@components/Button'
 import type { User } from '@schemas/userSchema'
 import { countries } from '@utils/const'
 
@@ -28,9 +28,7 @@ const UserDataForm = ({ data }: Props) => {
     }
   })
 
-  return (
-    <h1 className='text-5xl underline'>asdasdas</h1>
-  )
+  return <h1 className='text-5xl underline'>asdasdas</h1>
 }
 
 export default UserDataForm

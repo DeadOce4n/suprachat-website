@@ -20,7 +20,7 @@ const VerifyPage = (_props: RouteComponentProps) => {
         name='description'
         content='Para continuar, debes introducir el código que llegó a tu correo.'
       />
-      <Container className='thin'>
+      <Container variant='thin'>
         <VerifyForm onSubmit={handleVerify} />
       </Container>
     </>

@@ -63,11 +63,9 @@ export const api = async <
 
   if (!res.ok) {
     if ('error' in data) {
-      return Promise.reject(
-        new APIError(data.error.name, res.status, data.additionalErrors)
-      )
+      throw new APIError(data.error.name, res.status, data.additionalErrors)
     }
-    return Promise.reject(new APIError('unknownError', res.status))
+    throw new APIError('unknownError', res.status)
   }
 
   return data

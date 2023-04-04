@@ -1,18 +1,6 @@
-import useTheme from '@hooks/useTheme'
 import React from 'react'
-import styled from 'styled-components'
 
-const StyledFooter = styled.footer`
-  font-size: 1.5rem;
-  padding: 5rem;
-  text-align: center;
-  border-top: 1px solid
-    rgba(
-      ${(props) =>
-        props.theme.variant === 'light' ? '0, 0, 0' : '255, 255, 255'},
-      0.1
-    );
-`
+import useTheme from '@hooks/useTheme'
 
 type Props = {
   name: string
@@ -23,7 +11,7 @@ const Footer = ({ name, author }: Props) => {
   const { variant } = useTheme()
 
   return (
-    <StyledFooter>
+    <footer className='border-t border-gray-800 py-16 text-center'>
       <span>
         <strong>&copy; {name}</strong>
       </span>
@@ -31,7 +19,7 @@ const Footer = ({ name, author }: Props) => {
         Esta página fue creada con {variant === 'dark' ? '💛' : '🖤'} por{' '}
         {author}
       </p>
-    </StyledFooter>
+    </footer>
   )
 }
 

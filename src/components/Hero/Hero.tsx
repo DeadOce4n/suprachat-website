@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react'
 
 type Props = {
   children: ReactNode
-  image: JSX.Element
+  image: ReactNode
   title: string
   content: string
 }
@@ -10,13 +10,15 @@ type Props = {
 const Hero = ({ children, title, content, image }: Props) => {
   return (
     <div className='hero'>
-      <div className='hero-content flex-col lg:flex-row-reverse'>
-        {image}
-        <div className='lg:w-1/2'>
-          <h1 className='text-5xl font-bold'>{title}</h1>
-          <p className='py-6'>{content}</p>
+      <div className='hero-content max-w-full flex-col items-center lg:flex-row lg:justify-evenly'>
+        <div className='p-16 lg:w-4/12'>
+          <h1 className='text-fg-alt font-accent text-6xl font-bold'>
+            {title}
+          </h1>
+          <p className='py-6 text-xl'>{content}</p>
           {children}
         </div>
+        {image}
       </div>
     </div>
   )

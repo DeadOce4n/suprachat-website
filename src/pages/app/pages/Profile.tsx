@@ -13,7 +13,7 @@ const ProfilePage = () => {
   return (
     <>
       <Title>{`Editar perfil: ${userState?.nick} | ${BASE_TITLE}`}</Title>
-      <Container className='thin'>
+      <Container variant='thin'>
         <UserDataForm data={userState as User} />
       </Container>
     </>

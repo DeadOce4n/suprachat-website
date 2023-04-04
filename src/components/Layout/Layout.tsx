@@ -1,24 +1,23 @@
-import React, { type ReactNode, useCallback } from 'react'
 import {
   QueryClient,
   QueryClientProvider as Provider
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { ThemeProvider } from 'styled-components'
+import i18n from 'i18next'
+import React, { useCallback, type ReactNode } from 'react'
+import { Toaster } from 'react-hot-toast'
+import { initReactI18next } from 'react-i18next'
 import Particles from 'react-particles'
+import { ThemeProvider } from 'styled-components'
 import { loadFull } from 'tsparticles'
 import type { Container, Engine } from 'tsparticles-engine'
-import { Toaster } from 'react-hot-toast'
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
 
-import useTheme from '@hooks/useTheme'
-import type { Page } from '@utils/types'
-import GlobalStyle from '@styles/global'
-import particlesConfig from '@utils/particlesConfig'
-import Navbar from '@components/Navbar/Navbar'
 import { esTranslations } from '@common/translations'
-import Footer from '@components/Footer/Footer'
+import Footer from '@components/Footer'
+import Navbar from '@components/Navbar'
+import useTheme from '@hooks/useTheme'
+import particlesConfig from '@utils/particlesConfig'
+import type { Page } from '@utils/types'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -51,7 +50,6 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <ThemeProvider theme={{ variant }}>
-        <GlobalStyle />
         <div
           style={{
             height: '100%',

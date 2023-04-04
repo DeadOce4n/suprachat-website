@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next'
 
 import { BASE_TITLE } from '@utils/const'
 import useAuth from '@hooks/useAuth'
-import Button from '@components/Button/Button'
-import Container from '@components/Container/Container'
 import Hero from '@components/Hero/Hero'
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -15,35 +13,54 @@ const IndexPage: React.FC<PageProps> = () => {
 
   return (
     <section>
-      <Container className='split'>
-        <Hero
-          title={t('landing.heroTitle')}
-          content={t('landing.heroContent')}
-          image={
-            <StaticImage
-              src='../images/astronaut.webp'
-              alt='Astronauta flotando'
-              title='Astronauta flotando'
-              placeholder='blurred'
-              objectFit='scale-down'
-            />
-          }
-        >
-          <div className='buttons'>
-            {!userState && (
-              <Button primary onClick={() => navigate('/registro')}>
-                Registrarse
-              </Button>
-            )}
+      <Hero
+        title={t('landing.heroTitle')}
+        content={t('landing.heroContent')}
+        image={
+          <StaticImage
+            src='../images/astronaut.webp'
+            alt='Astronauta flotando'
+            title='Astronauta flotando'
+            placeholder='blurred'
+            objectFit='scale-down'
+          />
+        }
+      >
+        <div className='flex w-full flex-col gap-4 md:flex-row'>
+          {!userState && (
             <button
-              className='btn btn-primary w-full font-accent'
-              data-toggle-theme='dark,light'
+              className='
+                btn-primary
+                btn-lg
+                btn
+                font-accent
+                text-lg
+                normal-case
+                md:flex-1
+              '
+              onClick={() => navigate('/registro')}
             >
-              ¡Chatea ya!
+              {t('landing.signup')}
             </button>
-          </div>
-        </Hero>
-      </Container>
+          )}
+          <button
+            className='
+              btn-outline
+              btn-primary
+              btn-lg
+              btn
+              border-2
+              font-accent
+              text-lg
+              normal-case
+              md:flex-1
+            '
+            data-toggle-theme='dark,light'
+          >
+            {t('landing.chatNow')}
+          </button>
+        </div>
+      </Hero>
     </section>
   )
 }
