@@ -28,6 +28,18 @@ export const esTranslations = {
     chat: {
       title:
         'Bienvenido a SupraChat! Lee las reglas y el manual de usuario si tienes dudas 😉'
+    },
+    login: {
+      rememberMe: 'Recordarme durante 30 días',
+      nick: 'Nick',
+      password: 'Contraseña',
     }
+  },
+  actions: {
+    login: 'Iniciar sesión'
+  },
+  formSchema: {
+    required: 'Este campo es obligatorio',
+    tooSmall: 'Se requieren {{count}} caracteres para este campo'
   }
 }

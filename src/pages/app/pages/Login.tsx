@@ -5,7 +5,7 @@ import { Title, Meta } from 'react-head'
 import LoginForm from '@components/Forms/LoginForm'
 import useAuth from '@hooks/useAuth'
 import type { LoginParams } from '@services/auth.service'
-import Container3 from '@components/Container/Container'
+import Container from '@components/Container'
 import { BASE_TITLE } from '@utils/const'
 
 const LoginPage = (_props: RouteComponentProps) => {
@@ -20,9 +20,9 @@ const LoginPage = (_props: RouteComponentProps) => {
         name='description'
         content={`Pantalla de inicio de sesión | ${BASE_TITLE}`}
       />
-      <Container3 variant='thin'>
+      <Container variant='thin' className='w-full'>
         <LoginForm onSubmit={handleLogin} />
-      </Container3>
+      </Container>
     </>
   )
 }

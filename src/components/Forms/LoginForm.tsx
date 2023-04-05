@@ -1,15 +1,20 @@
 import React from 'react'
+import { cx } from 'classix'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 
-import Form from '@components/Form/Form'
-import Slider from '@components/Slider/Slider'
-import Button from '@components/Button/Button'
+import Heading from '@components/Heading'
 
 const formSchema = z.object({
-  username: z.string().min(3).max(20),
-  password: z.string().min(8),
+  username: z
+    .string({ required_error: 'formSchema.required' })
+    .min(3, { message: 'formSchema.tooSmall' })
+    .max(20),
+  password: z
+    .string({ required_error: 'formSchema.required' })
+    .min(8, { message: 'formSchema.tooSmall' }),
   remember_me: z.optional(z.boolean())
 })
 
@@ -20,26 +25,75 @@ type Props = {
 }
 
 const LoginForm = ({ onSubmit }: Props) => {
-  const { register, handleSubmit } = useForm<FormSchema>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormSchema>({
     resolver: zodResolver(formSchema)
   })
+  const { t } = useTranslation()
+
+  console.log(errors)
 
   return (
-    <Form.Container>
-      <h1>Iniciar sesión</h1>
-      <Form.Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.InputFields>
-          <label htmlFor='username'>Nick:</label>
-          <input type='text' {...register('username')} />
-          <label htmlFor='password'>Contraseña:</label>
-          <input type='password' {...register('password')} />
-          <Slider label='Recordarme por 30 días' {...register('remember_me')} />
-          <Button type='submit' primary>
-            Iniciar sesión
-          </Button>
-        </Form.InputFields>
-      </Form.Form>
-    </Form.Container>
+    <div className='flex min-h-[75vh] max-w-lg flex-col items-center justify-center'>
+      <Heading className='self-start'>Iniciar sesión</Heading>
+      <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex w-full flex-col gap-4'>
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text font-accent font-bold'>
+                {t('pages.login.nick')}
+                {':'}
+              </span>
+            </label>
+            <input
+              type='text'
+              className={cx(
+                'input-bordered input w-full',
+                errors.username?.message && 'input-error'
+              )}
+              {...register('username')}
+            />
+          </div>
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text font-accent font-bold'>
+                {t('pages.login.password')}
+                {':'}
+              </span>
+            </label>
+            <input
+              type='password'
+              className={cx(
+                'input-bordered input w-full',
+                errors.username?.message && 'input-error'
+              )}
+              {...register('password')}
+            />
+          </div>
+          <div className='form-control'>
+            <label className='label cursor-pointer'>
+              <span className='label-text font-accent font-bold'>
+                {t('pages.login.rememberMe')}
+              </span>
+              <input
+                type='checkbox'
+                className='toggle-primary toggle'
+                {...register('remember_me')}
+              />
+            </label>
+          </div>
+          <button
+            type='submit'
+            className='btn-primary btn w-full font-accent normal-case'
+          >
+            {t('actions.login')}
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 
