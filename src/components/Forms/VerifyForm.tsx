@@ -2,14 +2,18 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
+import { cx } from 'classix'
+import { t } from 'i18next'
 
-import Form from '@components/Form/Form'
-import Button from '@components/Button/Button'
 import useAuth from '@hooks/useAuth'
+import Heading from '@components/Heading'
 
 const formSchema = z.object({
   userId: z.string().regex(/^[0-9a-fA-F]{24}$/),
-  code: z.string().min(26).max(26)
+  code: z
+    .string({ required_error: t('formSchema.required') ?? '' })
+    .length(26, { message: t('formSchema.exactLength', { count: 26 }) ?? '' })
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -20,30 +24,50 @@ type Props = {
 
 const LoginForm = ({ onSubmit }: Props) => {
   const { userState } = useAuth()
-  const { register, handleSubmit } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       userId: userState?._id as string
     }
   })
+  const { t } = useTranslation()
 
   return (
-    <Form.Container>
-      <h1>Verifica tu cuenta</h1>
-      <p>
-        Para continuar, ingresa el código de verificación que llegó a tu correo.
-      </p>
-      <Form.Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.InputFields>
-          <label htmlFor='username'>Código de verificación:</label>
-          <input type='text' {...register('code')} />
+    <div className='flex min-h-[75vh] max-w-lg flex-col items-center justify-center'>
+      <Heading className='self-start'>{t('pages.verify.title')}</Heading>
+      <p>{t('pages.verify.subtitle')}</p>
+      <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex w-full flex-col gap-4'>
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text font-accent font-bold'>
+                {t('pages.verify.verificationCode')}
+                {':'}
+              </span>
+            </label>
+            <input
+              type='text'
+              className={cx(
+                'input-bordered input w-full',
+                errors.code?.message && 'input-error'
+              )}
+              {...register('code')}
+            />
+          </div>
           <input type='hidden' {...register('userId')} />
-          <Button type='submit' primary>
-            Verificar
-          </Button>
-        </Form.InputFields>
-      </Form.Form>
-    </Form.Container>
+          <button
+            type='submit'
+            className='btn-primary btn w-full font-accent normal-case'
+          >
+            {t('actions.verify')}
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 

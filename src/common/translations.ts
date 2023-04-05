@@ -32,14 +32,32 @@ export const esTranslations = {
     login: {
       rememberMe: 'Recordarme durante 30 días',
       nick: 'Nick',
+      password: 'Contraseña'
+    },
+    verify: {
+      title: 'Verifica tu cuenta',
+      subtitle:
+        'Para continuar, ingresa el código de verificación que llegó a tu correo.',
+      verificationCode: 'Código de verificación'
+    },
+    signup: {
+      title: 'Regístrate en SupraChat!',
+      nick: 'Nick',
+      email: 'Correo electrónico',
       password: 'Contraseña',
+      passwordRepeat: 'Confirmar contraseña',
+      passwordsNotMatch: 'Las contraseñas no coinciden'
     }
   },
   actions: {
-    login: 'Iniciar sesión'
+    login: 'Iniciar sesión',
+    verify: 'Verificar',
+    signup: 'Registrarse'
   },
   formSchema: {
     required: 'Este campo es obligatorio',
-    tooSmall: 'Se requieren {{count}} caracteres para este campo'
+    tooSmall: 'Este campo requiere mínimo {{count}} caracteres',
+    tooBig: 'Este campo requiere máximo {{count}} caracteres',
+    exactLength: 'Este campo requiere exactamente {{count}} caracteres'
   }
 }

@@ -34,11 +34,9 @@ const LoginForm = ({ onSubmit }: Props) => {
   })
   const { t } = useTranslation()
 
-  console.log(errors)
-
   return (
     <div className='flex min-h-[75vh] max-w-lg flex-col items-center justify-center'>
-      <Heading className='self-start'>Iniciar sesión</Heading>
+      <Heading className='self-start'>{t('actions.login')}</Heading>
       <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
         <div className='flex w-full flex-col gap-4'>
           <div className='form-control'>
@@ -68,7 +66,7 @@ const LoginForm = ({ onSubmit }: Props) => {
               type='password'
               className={cx(
                 'input-bordered input w-full',
-                errors.username?.message && 'input-error'
+                errors.password?.message && 'input-error'
               )}
               {...register('password')}
             />
