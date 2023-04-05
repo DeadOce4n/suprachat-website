@@ -68,7 +68,7 @@ const Layout = ({ children }: Props) => {
           <Footer name='SupraChat' author='DeadOcean' />
         </div>
       </ThemeProvider>
-      <Toaster position='top-right' />
+      <Toaster position='top-center' />
     </>
   )
 }
