@@ -6,11 +6,11 @@ type Props = {
   visible: boolean
 }
 
-export const NavbarEnd = ({ children, visible }: Props) => {
+export const NavbarMenu = ({ children, visible }: Props) => {
   return (
     <div
       className={cx(
-        'mt-2 flex h-3 w-full flex-col items-start justify-center gap-4 px-8 md:visible md:flex md:flex-row md:items-center md:justify-end md:p-0',
+        'flex h-3 w-full flex-col items-start justify-evenly gap-2 pl-8 md:visible md:flex md:flex-row md:items-center md:pl-0',
         !visible && 'invisible hidden',
         visible && 'h-max'
       )}

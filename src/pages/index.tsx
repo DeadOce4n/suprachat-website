@@ -26,16 +26,17 @@ const IndexPage: React.FC<PageProps> = () => {
           />
         }
       >
-        <div className='flex w-full flex-col gap-4 md:flex-row'>
+        <div className='flex w-full flex-col gap-2 md:flex-row md:gap-4'>
           {!userState && (
             <button
               className='
                 btn-primary
-                btn-lg
+                btn-md
                 btn
                 font-accent
                 text-lg
                 normal-case
+                md:btn-lg
                 md:flex-1
               '
               onClick={() => navigate('/registro')}
@@ -47,12 +48,13 @@ const IndexPage: React.FC<PageProps> = () => {
             className='
               btn-outline
               btn-primary
-              btn-lg
+              btn-md
               btn
               border-2
               font-accent
               text-lg
               normal-case
+              md:btn-lg
               md:flex-1
             '
             data-toggle-theme='dark,light'

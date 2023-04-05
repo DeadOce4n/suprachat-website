@@ -23,5 +23,11 @@ export const esTranslations = {
     operatorMale: 'Operador',
     adminMale: 'Administrador',
     adminFemale: 'Administradora'
+  },
+  pages: {
+    chat: {
+      title:
+        'Bienvenido a SupraChat! Lee las reglas y el manual de usuario si tienes dudas 😉'
+    }
   }
 }

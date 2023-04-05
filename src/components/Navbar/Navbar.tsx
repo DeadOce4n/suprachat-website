@@ -1,34 +1,20 @@
 import React, { useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import { useLocation } from '@reach/router'
-import styled from 'styled-components'
 import { shallow } from 'zustand/shallow'
 import { FaUserAstronaut } from 'react-icons/fa'
 
 import useTheme from '@hooks/useTheme'
 import useAuth from '@hooks/useAuth'
 import type { Page } from '@utils/types'
-import { NavbarContainer, NavbarStart, NavbarLink, Burger, NavbarEnd } from '.'
-
-const Menu = styled.div<{ visible: boolean }>`
-  display: flex;
-  flex-direction: column;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
-  max-height: ${(props) => (props.visible ? '30rem' : 0)};
-  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
-  width: 100%;
-  padding-left: 2rem;
-  transition: opacity 0.5s, max-height 0.2s;
-
-  @media only screen and (min-width: 60em) {
-    opacity: 1;
-    height: 5rem;
-    max-height: 30rem;
-    visibility: visible;
-    flex-direction: row;
-    align-items: center;
-  }
-`
+import {
+  NavbarContainer,
+  NavbarStart,
+  NavbarLink,
+  Burger,
+  NavbarEnd,
+  NavbarMenu
+} from '.'
 
 type Props = {
   pages: Page[]
@@ -50,19 +36,19 @@ export const Navbar = ({ pages }: Props) => {
 
   const actions = {
     register: () => {
+      setVisible(false)
       navigate('/registro')
-      setVisible((prev) => !prev)
     },
     login: () => {
+      setVisible(false)
       navigate('/app/login')
-      setVisible((prev) => !prev)
     },
     logout: () => {
       logout()
+      setVisible(false)
       if (pathname !== '/app/login') {
         navigate('/app/login')
       }
-      setVisible((prev) => !prev)
     },
     toggleTheme: () => toggle()
   }
@@ -77,33 +63,26 @@ export const Navbar = ({ pages }: Props) => {
         <Link className='font-logo text-3xl text-primary' to='/'>
           SUPRACHAT
         </Link>
-        <Burger onClick={toggleVisible} />
+        <Burger onClick={toggleVisible} visible={visible} />
       </NavbarStart>
-      <Menu visible={visible}>
+      <NavbarMenu visible={visible}>
         {pages.map((page) => (
           <NavbarLink key={page.name} to={page.route} onClick={toggleVisible}>
             {page.name}
           </NavbarLink>
         ))}
-      </Menu>
+      </NavbarMenu>
       <NavbarEnd visible={visible}>
         {userState ? (
           <>
             <Link to='/app/perfil' onClick={toggleVisible}>
-              <span
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: 8
-                }}
-              >
+              <span className='btn-primary btn-ghost btn flex items-center justify-between gap-4 font-accent font-bold normal-case text-accent'>
                 <FaUserAstronaut size={24} />
                 {userState.nick}
               </span>
             </Link>
             <button
-              className='btn-outline btn-primary btn border-2 font-accent normal-case'
+              className='btn-outline btn-primary btn w-full border-2 font-accent normal-case md:w-max'
               onClick={handleClickButton('logout')}
             >
               Cerrar sesión
@@ -113,14 +92,14 @@ export const Navbar = ({ pages }: Props) => {
           <>
             {pathname !== '/app/login/' && (
               <button
-                className='btn-outline btn-primary btn border-2 font-accent normal-case'
+                className='btn-outline btn-primary btn w-full border-2 font-accent normal-case md:w-max'
                 onClick={handleClickButton('login')}
               >
                 Iniciar sesión
               </button>
             )}
             <button
-              className='btn-primary btn font-accent normal-case'
+              className='btn-primary btn w-full font-accent normal-case md:w-max'
               onClick={handleClickButton('register')}
             >
               Registrarse

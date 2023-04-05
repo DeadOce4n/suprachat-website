@@ -1,25 +1,21 @@
-import React, { useState } from 'react'
-import { FaTimesCircle, FaBars } from 'react-icons/fa'
+import React from 'react'
+import { FaTimes, FaBars } from 'react-icons/fa'
 
 type Props = {
+  visible: boolean
   onClick: () => void
 }
 
-export const Burger = ({ onClick }: Props) => {
-  const [isChecked, setIsChecked] = useState(false)
-
+export const Burger = ({ onClick, visible }: Props) => {
   return (
     <button
-      onClick={() => {
-        setIsChecked((prev) => !prev)
-        onClick()
-      }}
+      onClick={onClick}
       defaultChecked={false}
-      className='swap btn-ghost swap-rotate btn-circle btn md:hidden'
+      className='swap btn-primary swap-rotate btn-circle btn md:hidden'
     >
-      <input type='checkbox' checked={isChecked} readOnly />
+      <input type='checkbox' checked={visible} readOnly />
       <FaBars size={24} className='swap-off fill-current' />
-      <FaTimesCircle size={24} className='swap-on fill-current' />
+      <FaTimes size={24} className='swap-on fill-current' />
     </button>
   )
 }

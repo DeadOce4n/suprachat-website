@@ -8,11 +8,13 @@ export const NavbarStart = ({ children }: Props) => (
   <div
     className='
       flex
-      h-3
+      h-full
       w-full
       flex-row
       items-center
-      justify-center
+      justify-between
+      p-4
+      md:p-0
     '
   >
     {children}
