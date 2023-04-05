@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { BASE_TITLE } from '@utils/const'
 import useAuth from '@hooks/useAuth'
 import Hero from '@components/Hero/Hero'
+import { cx } from 'classix'
 
 const IndexPage: React.FC<PageProps> = () => {
   const { userState } = useAuth()
@@ -45,18 +46,10 @@ const IndexPage: React.FC<PageProps> = () => {
             </button>
           )}
           <button
-            className='
-              btn-outline
-              btn-primary
-              btn-md
-              btn
-              border-2
-              font-accent
-              text-lg
-              normal-case
-              md:btn-lg
-              md:flex-1
-            '
+            className={cx(
+              'btn-primary btn-md btn border-2 font-accent text-lg normal-case md:btn-lg md:flex-1',
+              !userState && 'btn-outline'
+            )}
             data-toggle-theme='dark,light'
           >
             {t('landing.chatNow')}
