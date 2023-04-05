@@ -7,7 +7,7 @@ type Props = {
 
 const ChatFrame = ({ src, title }: Props) => (
   <iframe
-    className='h-full w-full rounded-xl min-h-[80vh]'
+    className='h-full min-h-[80vh] w-full rounded-xl'
     src={src}
     title={title}
     id='chat'
