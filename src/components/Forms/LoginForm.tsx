@@ -78,7 +78,7 @@ const LoginForm = ({ onSubmit }: Props) => {
               </span>
               <input
                 type='checkbox'
-                className='toggle-primary toggle'
+                className='checkbox checkbox-primary'
                 {...register('remember_me')}
               />
             </label>
