@@ -69,7 +69,9 @@ const useAuth = () => {
         const user = decodeToken(response.data.token, userSchema)
         setUser(user)
         setToken(response.data.token)
-        toast.success(t(`hooks.auth.${response.messageKey}`, { nick: user.nick }))
+        toast.success(
+          t(`hooks.auth.${response.messageKey}`, { nick: user.nick })
+        )
         navigate('/app/perfil')
       }
     },

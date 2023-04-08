@@ -33,7 +33,7 @@ const UserDataForm = ({ data, onSubmit }: Props) => {
 
   return (
     <form
-      className='flex flex-col gap-4 w-full'
+      className='flex w-full flex-col gap-4'
       onSubmit={handleSubmit((values) =>
         onSubmit({ ...values, id: data._id, token: token as string })
       )}
