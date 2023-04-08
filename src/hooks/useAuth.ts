@@ -54,7 +54,13 @@ export const useSessionStore = create<SessionState>()(
 
 const useAuth = () => {
   const { t } = useTranslation()
-  const { user: userState, setUser, setToken, logout } = useSessionStore()
+  const {
+    user: userState,
+    token,
+    setUser,
+    setToken,
+    logout
+  } = useSessionStore()
 
   const { mutate: login, isLoading: loginIsLoading } = useMutation({
     mutationFn: authService.login,
@@ -63,13 +69,13 @@ const useAuth = () => {
         const user = decodeToken(response.data.token, userSchema)
         setUser(user)
         setToken(response.data.token)
-        toast.success(t(`auth.${response.messageKey}`, { nick: user.nick }))
+        toast.success(t(`hooks.auth.${response.messageKey}`, { nick: user.nick }))
         navigate('/app/perfil')
       }
     },
     onError: (error: Error) => {
       if (error instanceof APIError) {
-        toast.error(t(`auth.${error.message}`))
+        toast.error(t(`hooks.auth.${error.message}`))
       }
     }
   })
@@ -84,7 +90,7 @@ const useAuth = () => {
     },
     onError: (error: Error) => {
       if (error instanceof APIError) {
-        toast.error(t(`auth.${error.message}`))
+        toast.error(t(`hooks.auth.${error.message}`))
       }
     }
   })
@@ -99,13 +105,14 @@ const useAuth = () => {
     },
     onError: (error: Error) => {
       if (error instanceof APIError) {
-        toast.error(t(`auth.${error.message}`))
+        toast.error(t(`hooks.auth.${error.message}`))
       }
     }
   })
 
   return {
     userState,
+    token,
     login,
     loginIsLoading,
     signup,

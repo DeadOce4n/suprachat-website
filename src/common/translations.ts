@@ -3,13 +3,18 @@ export const esTranslations = {
     databaseUnavailable:
       'La base de datos no está disponible, intente más tarde'
   },
-  auth: {
-    missingAuthorizationHeader: 'Hacen falta las credenciales',
-    malformedAuthorization: 'Credenciales con formato incorrecto',
-    userNotFound: 'Usuario no encontrado',
-    wrongPassword: 'Contraseña incorrecta',
-    verificationError: 'La verificación de la cuenta falló',
-    loginSuccessful: 'Bienvenidx de vuelta, {{nick}}'
+  hooks: {
+    auth: {
+      missingAuthorizationHeader: 'Hacen falta las credenciales',
+      malformedAuthorization: 'Credenciales con formato incorrecto',
+      userNotFound: 'Usuario no encontrado',
+      wrongPassword: 'Contraseña incorrecta',
+      verificationError: 'La verificación de la cuenta falló',
+      loginSuccessful: 'Bienvenidx de vuelta, {{nick}}'
+    },
+    users: {
+      successUserUpdate: 'Perfil actualizado correctamente'
+    }
   },
   landing: {
     heroTitle: 'Chatea gratis con gente de todo el mundo',
@@ -47,12 +52,18 @@ export const esTranslations = {
       password: 'Contraseña',
       passwordRepeat: 'Confirmar contraseña',
       passwordsNotMatch: 'Las contraseñas no coinciden'
+    },
+    profile: {
+      editProfile: 'Editar perfil',
+      whichCountry: '¿De qué país eres?',
+      tellUsAboutYou: 'Cuéntanos más sobre ti'
     }
   },
   actions: {
     login: 'Iniciar sesión',
     verify: 'Verificar',
-    signup: 'Registrarse'
+    signup: 'Registrarse',
+    save: 'Guardar cambios'
   },
   formSchema: {
     required: 'Este campo es obligatorio',
