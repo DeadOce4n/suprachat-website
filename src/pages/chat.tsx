@@ -1,13 +1,12 @@
-import Portal from '@rc-component/portal'
-import { cx } from 'classix'
 import type { HeadFC } from 'gatsby'
 import React, { useState } from 'react'
-import { FaExternalLinkAlt, FaTimes } from 'react-icons/fa'
 import { useTranslation } from 'react-i18next'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 
 import ChatFrame from '@components/ChatFrame'
 import Container from '@components/Container'
 import Heading from '@components/Heading'
+import { Modal } from '@components/Modal'
 import useAuth from '@hooks/useAuth'
 import { BASE_TITLE, CHANNELS, CHAT_URL } from '@utils/const'
 
@@ -47,29 +46,13 @@ const ChatPage = () => {
           )}
         </Container>
       </section>
-      <Portal open={isModalOpen}>
-        <div className={cx('modal', isModalOpen && 'modal-open')}>
-          <div
-            className='
-              modal-box
-              relative
-              m-4
-              h-full
-              w-full
-              p-0
-              md:max-h-[80vh]
-              md:max-w-screen-2xl'
-          >
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className='btn-primary btn-sm btn-circle btn absolute right-2 top-2'
-            >
-              <FaTimes />
-            </button>
-            {chatFrame}
-          </div>
-        </div>
-      </Portal>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        className='p-0 md:max-w-screen-2xl'
+      >
+        {chatFrame}
+      </Modal>
     </>
   )
 }
