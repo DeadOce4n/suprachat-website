@@ -75,12 +75,28 @@ export const Navbar = ({ pages }: Props) => {
       <NavbarEnd visible={visible}>
         {userState ? (
           <>
-            <Link to='/app/perfil' onClick={toggleVisible}>
-              <span className='btn-primary btn-ghost btn flex items-center justify-between gap-4 font-accent font-bold normal-case text-accent'>
-                <FaUserAstronaut size={24} />
-                {userState.nick}
-              </span>
-            </Link>
+            {pathname !== '/app/perfil/' && (
+              <Link to='/app/perfil' onClick={toggleVisible}>
+                <span
+                  className='
+                    btn-primary
+                    btn-ghost
+                    btn
+                    flex
+                    items-center
+                    justify-between
+                    gap-4
+                    font-accent
+                    font-bold
+                    normal-case
+                    text-accent
+                  '
+                >
+                  <FaUserAstronaut size={24} />
+                  {userState.nick}
+                </span>
+              </Link>
+            )}{' '}
             <button
               className='btn-outline btn-primary btn w-full border-2 font-accent normal-case md:w-max'
               onClick={handleClickButton('logout')}
