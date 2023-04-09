@@ -29,8 +29,25 @@ export const updateUser = ({ id, token, ...payload }: UpdateParams) =>
     userSchema
   )
 
+export type UploadPictureParams = {
+  id: string
+  token: string
+  payload: FormData
+}
+export const uploadPicture = ({ id, token, payload }: UploadPictureParams) =>
+  api(
+    {
+      method: 'POST',
+      endpoint: `/users/${id}/upload-profile-picture`,
+      payload,
+      auth: { token }
+    },
+    z.object({ imageUrl: z.string().url() })
+  )
+
 export default {
   getUser,
   findUsers,
-  updateUser
+  updateUser,
+  uploadPicture
 }

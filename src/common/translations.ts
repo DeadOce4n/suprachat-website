@@ -13,7 +13,10 @@ export const esTranslations = {
       loginSuccessful: 'Bienvenidx de vuelta, {{nick}}'
     },
     users: {
-      successUserUpdate: 'Perfil actualizado correctamente'
+      successUserUpdate: 'Perfil actualizado correctamente',
+      databaseUnavailable: 'Error de conexión, intente más tarde',
+      fileTooLarge: 'El archivo es demasiado grande!',
+      uploadProfilePictureSuccess: '¡Foto de perfil actualizada correctamente!'
     }
   },
   landing: {
@@ -56,7 +59,9 @@ export const esTranslations = {
     profile: {
       editProfile: 'Editar perfil',
       whichCountry: '¿De qué país eres?',
-      tellUsAboutYou: 'Cuéntanos más sobre ti'
+      tellUsAboutYou: 'Cuéntanos más sobre ti',
+      changePassword: 'Cambiar contraseña',
+      changeProfilePic: 'Cambiar foto'
     }
   },
   actions: {
