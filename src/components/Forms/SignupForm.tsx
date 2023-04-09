@@ -65,7 +65,7 @@ const SignupForm = ({ onSubmit }: Props) => {
               </span>
             </label>
             <input
-              type='text'
+              type='email'
               className={cx(
                 'input-bordered input w-full',
                 errors.email?.message && 'input-error'
@@ -81,7 +81,7 @@ const SignupForm = ({ onSubmit }: Props) => {
               </span>
             </label>
             <input
-              type='text'
+              type='password'
               className={cx(
                 'input-bordered input w-full',
                 errors.password?.message && 'input-error'
@@ -97,7 +97,7 @@ const SignupForm = ({ onSubmit }: Props) => {
               </span>
             </label>
             <input
-              type='text'
+              type='password'
               className={cx(
                 'input-bordered input w-full',
                 errors.passwordRepeat?.message && 'input-error'
