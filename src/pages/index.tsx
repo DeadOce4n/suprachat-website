@@ -51,6 +51,7 @@ const IndexPage: React.FC<PageProps> = () => {
               !userState && 'btn-outline'
             )}
             data-toggle-theme='dark,light'
+            onClick={() => navigate('/chat')}
           >
             {t('landing.chatNow')}
           </button>
