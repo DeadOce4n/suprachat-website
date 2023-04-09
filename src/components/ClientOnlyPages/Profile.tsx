@@ -11,7 +11,6 @@ import Heading from '@components/Heading'
 import { Modal } from '@components/Modal'
 import useAuth from '@hooks/useAuth'
 import { useUser, useUsers } from '@hooks/useUsers'
-import type { User } from '@schemas/userSchema'
 import type { UpdateParams } from '@services/user.service'
 import { BASE_TITLE } from '@utils/const'
 
@@ -19,7 +18,7 @@ const ProfilePage = () => {
   const { userState, token } = useAuth()
   const { t } = useTranslation()
   const { updateUser, uploadPicture } = useUsers()
-  const { userData } = useUser(userState as User)
+  const { userData } = useUser(userState ? userState._id : '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
 
   const handleSubmit = (params: UpdateParams) => updateUser(params)

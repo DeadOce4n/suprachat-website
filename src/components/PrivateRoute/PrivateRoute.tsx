@@ -1,8 +1,9 @@
-import React, { type JSXElementConstructor } from 'react'
+import React, { type JSXElementConstructor, Suspense } from 'react'
 import { navigate } from 'gatsby'
 import type { RouteComponentProps } from '@reach/router'
 
 import useAuth from '@hooks/useAuth'
+import { Loader } from '@components/Loader'
 
 interface Props extends RouteComponentProps {
   component: JSXElementConstructor<Record<string, unknown>>
@@ -25,3 +26,18 @@ const PrivateRoute = ({ component: Component, location, ...rest }: Props) => {
 }
 
 export default PrivateRoute
+
+export const createLazyRoute = <T extends RouteComponentProps>(
+  RouteComponent: React.ComponentType<T>,
+  displayName = RouteComponent.displayName
+) => {
+  const component = (props: T) => {
+    return (
+      <Suspense fallback={<Loader />}>
+        <RouteComponent {...props} />
+      </Suspense>
+    )
+  }
+  component.displayName = displayName
+  return component
+}

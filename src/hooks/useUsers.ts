@@ -5,7 +5,6 @@ import { shallow } from 'zustand/shallow'
 
 import userService from '@services/user.service'
 import { useSessionStore } from '@hooks/useAuth'
-import type { User } from '@schemas/userSchema'
 import { APIError } from '@utils/error'
 
 export const useUsers = () => {
@@ -70,19 +69,19 @@ export const useUsers = () => {
   }
 }
 
-export const useUser = (user: string | User) => {
+export const useUser = (userId: string) => {
   const userState = useSessionStore((state) => state.user)
-  const userId = typeof user === 'string' ? user : user._id
   const { data: userData, isLoading: isUserFetchLoading } = useQuery({
     queryKey: ['users', userId],
     queryFn: async () => {
-      const res = await userService.getUser(userId)
+      const res = await userService.getUser(userId ?? '')
       if (!res.success) {
         return null
       }
       return res.data
     },
-    initialData: userState?._id === userId ? userState : null
+    initialData: userState?._id === userId ? userState : null,
+    enabled: !!userId
   })
 
   return {

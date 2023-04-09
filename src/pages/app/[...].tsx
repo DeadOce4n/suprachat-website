@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Router, type RouteComponentProps } from '@reach/router'
 
-import PrivateRoute from '@components/PrivateRoute/PrivateRoute'
-import Login from './pages/Login'
-import Verify from './pages/Verify'
-import Profile from './pages/Profile'
+import { PrivateRoute, createLazyRoute } from '@components/PrivateRoute'
+
+const Login = createLazyRoute(
+  lazy(() => import('@components/ClientOnlyPages/Login'))
+)
+const Verify = createLazyRoute(
+  lazy(() => import('@components/ClientOnlyPages/Login'))
+)
+const Profile = createLazyRoute(
+  lazy(() => import('@components/ClientOnlyPages/Profile'))
+)
 
 const Default = (_props: RouteComponentProps) => <p>Sorry, nothing here!</p>
 
