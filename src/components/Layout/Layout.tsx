@@ -8,14 +8,12 @@ import React, { useCallback, type ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { initReactI18next } from 'react-i18next'
 import Particles from 'react-particles'
-import { ThemeProvider } from 'styled-components'
 import { loadFull } from 'tsparticles'
 import type { Container, Engine } from 'tsparticles-engine'
 
 import { esTranslations } from '@common/translations'
 import Footer from '@components/Footer'
 import Navbar from '@components/Navbar'
-import useTheme from '@hooks/useTheme'
 import particlesConfig from '@utils/particlesConfig'
 import type { Page } from '@utils/types'
 
@@ -33,8 +31,6 @@ type Props = {
 }
 
 const Layout = ({ children }: Props) => {
-  const variant = useTheme((state) => state.variant)
-
   const pages: Page[] = [
     { name: '¡Chatea ya!', route: '/chat' },
     { name: 'Reglas', route: '/reglas' },
@@ -49,25 +45,23 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      <ThemeProvider theme={{ variant }}>
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Particles
-            id='tsparticles'
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={particlesConfig}
-          />
-          <Navbar pages={pages} />
-          <main style={{ flex: 1 }}>{children}</main>
-          <Footer name='SupraChat' author='DeadOcean' />
-        </div>
-      </ThemeProvider>
+      <div
+        style={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Particles
+          id='tsparticles'
+          init={particlesInit}
+          loaded={particlesLoaded}
+          options={particlesConfig}
+        />
+        <Navbar pages={pages} />
+        <main style={{ flex: 1 }}>{children}</main>
+        <Footer name='SupraChat' author='DeadOcean' />
+      </div>
       <Toaster position='top-center' />
     </>
   )

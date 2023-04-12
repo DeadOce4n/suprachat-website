@@ -1,6 +1,3 @@
-import 'styled-components'
-import type { ThemeVariant } from '@utils/types'
-
 export {}
 
 declare global {
@@ -14,11 +11,5 @@ declare global {
       GATSBY_KIWI_URL: string
       GATSBY_CHANNELS: string
     }
-  }
-}
-
-declare module 'styled-components' {
-  export interface DefaultTheme {
-    variant: ThemeVariant
   }
 }

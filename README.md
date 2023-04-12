@@ -9,7 +9,5 @@ A static site built with [Gatsby](https://www.gatsbyjs.com/docs), [DaisyUI](http
 Some cleanup is still needed and some functionalities are incomplete, this is non-exhaustive
 ToDo list:
 
-- Remove `styled-components` in favor of `DaisyUI` and `tailwindcss`
-- Style forms correctly
 - Complete user profile functionality
 - Recreate radio player component from scratch
