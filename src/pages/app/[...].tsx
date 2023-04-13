@@ -7,7 +7,7 @@ const Login = createLazyRoute(
   lazy(() => import('@components/ClientOnlyPages/Login'))
 )
 const Verify = createLazyRoute(
-  lazy(() => import('@components/ClientOnlyPages/Login'))
+  lazy(() => import('@components/ClientOnlyPages/Verify'))
 )
 const Profile = createLazyRoute(
   lazy(() => import('@components/ClientOnlyPages/Profile'))
