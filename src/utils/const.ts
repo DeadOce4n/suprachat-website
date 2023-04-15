@@ -201,3 +201,4 @@ export const countries = [
   'Zambia',
   'Zimbabwe'
 ] as const
+export const VERIFICATION_CODE_LENGTH = 26

@@ -70,7 +70,13 @@ export const useUsers = () => {
 }
 
 export const useUser = (userId: string) => {
-  const userState = useSessionStore((state) => state.user)
+  const { user: userState, setUser } = useSessionStore(
+    (state) => ({
+      user: state.user,
+      setUser: state.setUser
+    }),
+    shallow
+  )
   const { data: userData, isLoading: isUserFetchLoading } = useQuery({
     queryKey: ['users', userId],
     queryFn: async () => {
@@ -81,7 +87,12 @@ export const useUser = (userId: string) => {
       return res.data
     },
     initialData: userState?._id === userId ? userState : null,
-    enabled: !!userId
+    enabled: !!userId,
+    onSuccess: (response) => {
+      if (response) {
+        setUser(response)
+      }
+    }
   })
 
   return {

@@ -4,16 +4,16 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 import { cx } from 'classix'
-import { t } from 'i18next'
 
 import useAuth from '@hooks/useAuth'
 import Heading from '@components/Heading'
+import { VERIFICATION_CODE_LENGTH } from '@utils/const'
 
 const formSchema = z.object({
   userId: z.string().regex(/^[0-9a-fA-F]{24}$/),
   code: z
-    .string({ required_error: t('formSchema.required') ?? '' })
-    .length(26, { message: t('formSchema.exactLength', { count: 26 }) ?? '' })
+    .string({ required_error: 'formSchema.required' })
+    .length(VERIFICATION_CODE_LENGTH, { message: 'formSchema.exactLength' })
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -49,6 +49,13 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.verify.verificationCode')}
                 {':'}
               </span>
+              {errors.code && errors.code.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.code.message, {
+                    count: VERIFICATION_CODE_LENGTH
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='text'

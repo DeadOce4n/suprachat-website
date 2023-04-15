@@ -6,15 +6,16 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
 
 import Heading from '@components/Heading'
+import { userConstants } from '@schemas/userSchema'
 
 const formSchema = z.object({
   username: z
     .string({ required_error: 'formSchema.required' })
-    .min(3, { message: 'formSchema.tooSmall' })
-    .max(20),
+    .min(userConstants.nickMinLength, { message: 'formSchema.tooSmall' })
+    .max(userConstants.nickMaxLength, { message: 'formSchema.tooBig' }),
   password: z
     .string({ required_error: 'formSchema.required' })
-    .min(8, { message: 'formSchema.tooSmall' }),
+    .min(userConstants.passwordMinLength, { message: 'formSchema.tooSmall' }),
   remember_me: z.optional(z.boolean())
 })
 
@@ -46,6 +47,16 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.login.nick')}
                 {':'}
               </span>
+              {errors.username && errors.username.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.username.message, {
+                    count:
+                      errors.username.message === 'formSchema.tooSmall'
+                        ? userConstants.nickMinLength
+                        : userConstants.nickMaxLength
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='text'
@@ -63,6 +74,13 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.login.password')}
                 {':'}
               </span>
+              {errors.password && errors.password.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.password.message, {
+                    count: userConstants.passwordMinLength
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='password'

@@ -1,3 +1,5 @@
+import type { PathsOf } from '@utils/types'
+
 export const esTranslations = {
   general: {
     databaseUnavailable:
@@ -74,6 +76,9 @@ export const esTranslations = {
     required: 'Este campo es obligatorio',
     tooSmall: 'Este campo requiere mínimo {{count}} caracteres',
     tooBig: 'Este campo requiere máximo {{count}} caracteres',
-    exactLength: 'Este campo requiere exactamente {{count}} caracteres'
+    exactLength: 'Este campo requiere exactamente {{count}} caracteres',
+    invalidEmail: 'El correo no es válido'
   }
-}
+} as const
+
+export type EsTranslationPath = PathsOf<typeof esTranslations>

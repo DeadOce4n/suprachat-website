@@ -4,19 +4,28 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
-import { t } from 'i18next'
 
 import Heading from '@components/Heading'
+import { userConstants } from '@schemas/userSchema'
 
 const formSchema = z
   .object({
-    nick: z.string().min(3).max(20),
-    password: z.string().min(8),
-    email: z.string().email(),
-    passwordRepeat: z.string().min(8)
+    nick: z
+      .string()
+      .min(userConstants.nickMinLength, { message: 'formSchema.tooSmall' })
+      .max(userConstants.nickMaxLength, { message: 'formSchema.tooBig' }),
+    password: z
+      .string({ required_error: 'formSchema.required' })
+      .min(userConstants.passwordMinLength, { message: 'formSchema.tooSmall' }),
+    email: z
+      .string({ required_error: 'formSchema.required' })
+      .email({ message: 'formSchema.invalidEmail' }),
+    passwordRepeat: z
+      .string({ required_error: 'pages.signup.passwordsNotMatch' })
+      .min(userConstants.passwordMinLength, { message: 'formSchema.tooSmall' })
   })
   .refine((values) => values.passwordRepeat === values.password, {
-    message: t('pages.signup.passwordsNotMatch') ?? '',
+    message: 'pages.signup.passwordsNotMatch',
     path: ['passwordRepeat']
   })
 
@@ -48,6 +57,16 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.signup.nick')}
                 {':'}
               </span>
+              {errors.nick && errors.nick.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.nick.message, {
+                    count:
+                      errors.nick.message === 'formSchema.tooSmall'
+                        ? userConstants.nickMinLength
+                        : userConstants.nickMaxLength
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='text'
@@ -65,6 +84,11 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.signup.email')}
                 {':'}
               </span>
+              {errors.email && errors.email.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.email.message)}
+                </span>
+              )}
             </label>
             <input
               type='email'
@@ -82,6 +106,13 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.signup.password')}
                 {':'}
               </span>
+              {errors.password && errors.password.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.password.message, {
+                    count: userConstants.passwordMinLength
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='password'
@@ -99,6 +130,13 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
                 {t('pages.signup.passwordRepeat')}
                 {':'}
               </span>
+              {errors.passwordRepeat && errors.passwordRepeat.message && (
+                <span className='label-text-alt text-error'>
+                  {t(errors.passwordRepeat.message, {
+                    count: userConstants.passwordMinLength
+                  })}
+                </span>
+              )}
             </label>
             <input
               type='password'
