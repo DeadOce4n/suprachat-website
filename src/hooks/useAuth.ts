@@ -87,6 +87,7 @@ const useAuth = () => {
     onSuccess: (response) => {
       if (response.success) {
         setUser(response.data)
+        toast.success(t(`hooks.auth.${response.messageKey}`))
         navigate('/app/verificar')
       }
     },
