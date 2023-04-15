@@ -22,9 +22,10 @@ type FormSchema = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit: (params: FormSchema) => void
+  isLoading: boolean
 }
 
-const LoginForm = ({ onSubmit }: Props) => {
+const LoginForm = ({ onSubmit, isLoading }: Props) => {
   const {
     register,
     handleSubmit,
@@ -52,6 +53,7 @@ const LoginForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.username?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('username')}
             />
           </div>
@@ -68,6 +70,7 @@ const LoginForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.password?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('password')}
             />
           </div>
@@ -79,13 +82,18 @@ const LoginForm = ({ onSubmit }: Props) => {
               <input
                 type='checkbox'
                 className='checkbox-primary checkbox'
+                disabled={isLoading}
                 {...register('remember_me')}
               />
             </label>
           </div>
           <button
             type='submit'
-            className='btn-primary btn w-full font-accent normal-case'
+            className={cx(
+              'btn-primary btn w-full font-accent normal-case',
+              isLoading && 'loading'
+            )}
+            disabled={isLoading}
           >
             {t('actions.login')}
           </button>

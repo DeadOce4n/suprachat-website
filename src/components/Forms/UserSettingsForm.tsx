@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import type { User } from '@schemas/userSchema'
 import { countries } from '@utils/const'
 import useAuth from '@hooks/useAuth'
+import { cx } from 'classix'
 
 const formSchema = z.object({
   country: z.optional(z.enum(countries)),
@@ -18,9 +19,10 @@ type FormSchema = z.infer<typeof formSchema>
 type Props = {
   data: User
   onSubmit: (params: FormSchema & { id: string; token: string }) => void
+  isLoading: boolean
 }
 
-const UserDataForm = ({ data, onSubmit }: Props) => {
+const UserDataForm = ({ data, onSubmit, isLoading }: Props) => {
   const { register, handleSubmit } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,7 +44,11 @@ const UserDataForm = ({ data, onSubmit }: Props) => {
         <label className='label font-accent font-bold text-primary'>
           <span className='label-text'>{t('pages.profile.whichCountry')}</span>
         </label>
-        <select className='select-bordered select' {...register('country')}>
+        <select
+          className='select-bordered select'
+          disabled={isLoading}
+          {...register('country')}
+        >
           {countries.map((country) => (
             <option key={country}>{country}</option>
           ))}
@@ -56,13 +62,18 @@ const UserDataForm = ({ data, onSubmit }: Props) => {
         </label>
         <textarea
           className='textarea-bordered textarea'
+          disabled={isLoading}
           {...register('about')}
         />
       </div>
       <div className='flex flex-row justify-end'>
         <button
-          className='btn-primary btn font-accent normal-case'
+          className={cx(
+            'btn-primary btn font-accent normal-case',
+            isLoading && 'loading'
+          )}
           type='submit'
+          disabled={isLoading}
         >
           {t('actions.save')}
         </button>

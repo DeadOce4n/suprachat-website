@@ -20,9 +20,10 @@ type FormData = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit: (params: FormData) => void
+  isLoading: boolean
 }
 
-const LoginForm = ({ onSubmit }: Props) => {
+const LoginForm = ({ onSubmit, isLoading }: Props) => {
   const { userState } = useAuth()
   const {
     register,
@@ -55,13 +56,18 @@ const LoginForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.code?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('code')}
             />
           </div>
           <input type='hidden' {...register('userId')} />
           <button
             type='submit'
-            className='btn-primary btn w-full font-accent normal-case'
+            className={cx(
+              'btn-primary btn w-full font-accent normal-case',
+              isLoading && 'loading'
+            )}
+            disabled={isLoading}
           >
             {t('actions.verify')}
           </button>

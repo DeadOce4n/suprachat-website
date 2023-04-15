@@ -5,16 +5,17 @@ import type { HeadFC } from 'gatsby'
 
 import SignupForm from '@components/Forms/SignupForm'
 import useAuth from '@hooks/useAuth'
-import Container from '@components/Container/Container'
+import Container from '@components/Container'
 import { BASE_TITLE } from '@utils/const'
 
 const LoginPage = (_props: RouteComponentProps) => {
-  const { signup } = useAuth()
+  const { signup, signupIsLoading } = useAuth()
 
   return (
     <Container variant='thin'>
       <SignupForm
         onSubmit={(params) => signup(omit(params, ['passwordRepeat']))}
+        isLoading={signupIsLoading}
       />
     </Container>
   )

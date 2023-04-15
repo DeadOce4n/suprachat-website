@@ -9,7 +9,7 @@ import Container from '@components/Container'
 import { BASE_TITLE } from '@utils/const'
 
 const LoginPage = (_props: RouteComponentProps) => {
-  const { login } = useAuth()
+  const { login, loginIsLoading } = useAuth()
 
   const handleLogin = async (params: LoginParams) => login(params)
 
@@ -21,7 +21,7 @@ const LoginPage = (_props: RouteComponentProps) => {
         content={`Pantalla de inicio de sesión | ${BASE_TITLE}`}
       />
       <Container variant='thin' className='w-full'>
-        <LoginForm onSubmit={handleLogin} />
+        <LoginForm onSubmit={handleLogin} isLoading={loginIsLoading} />
       </Container>
     </>
   )

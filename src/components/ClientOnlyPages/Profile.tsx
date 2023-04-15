@@ -13,11 +13,13 @@ import useAuth from '@hooks/useAuth'
 import { useUser, useUsers } from '@hooks/useUsers'
 import type { UpdateParams } from '@services/user.service'
 import { BASE_TITLE } from '@utils/const'
+import { cx } from 'classix'
 
 const ProfilePage = () => {
   const { userState, token } = useAuth()
   const { t } = useTranslation()
-  const { updateUser, uploadPicture } = useUsers()
+  const { updateUser, uploadPicture, updateUserIsLoading, uploadIsLoading } =
+    useUsers()
   const { userData } = useUser(userState ? userState._id : '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
 
@@ -56,7 +58,11 @@ const ProfilePage = () => {
               </button>
               <label
                 htmlFor='file-input'
-                className='btn-success btn-xs btn gap-1 font-accent normal-case'
+                className={cx(
+                  'btn-success btn-xs btn gap-1 font-accent normal-case',
+                  (updateUserIsLoading || uploadIsLoading) &&
+                    'dbtn-disabled loading'
+                )}
               >
                 <FaImages />
                 {t('pages.profile.changeProfilePic')}
@@ -73,7 +79,11 @@ const ProfilePage = () => {
             </div>
           </div>
           {userData ? (
-            <UserDataForm data={userData} onSubmit={handleSubmit} />
+            <UserDataForm
+              data={userData}
+              onSubmit={handleSubmit}
+              isLoading={updateUserIsLoading || uploadIsLoading}
+            />
           ) : (
             <div className='flex h-[80vh] w-full items-center justify-center'>
               <SyncLoader className='text-primary' color='#FFFFFF' />

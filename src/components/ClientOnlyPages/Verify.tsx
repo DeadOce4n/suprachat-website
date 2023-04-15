@@ -9,7 +9,7 @@ import Container from '@components/Container/Container'
 import { BASE_TITLE } from '@utils/const'
 
 const VerifyPage = (_props: RouteComponentProps) => {
-  const { verify } = useAuth()
+  const { verify, verifyIsLoading } = useAuth()
 
   const handleVerify = async (params: VerifyParams) => verify(params)
 
@@ -21,7 +21,7 @@ const VerifyPage = (_props: RouteComponentProps) => {
         content='Para continuar, debes introducir el código que llegó a tu correo.'
       />
       <Container variant='thin'>
-        <VerifyForm onSubmit={handleVerify} />
+        <VerifyForm onSubmit={handleVerify} isLoading={verifyIsLoading} />
       </Container>
     </>
   )

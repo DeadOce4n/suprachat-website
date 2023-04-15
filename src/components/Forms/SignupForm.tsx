@@ -24,9 +24,10 @@ type FormData = z.infer<typeof formSchema>
 
 type Props = {
   onSubmit: (params: FormData) => void
+  isLoading: boolean
 }
 
-const SignupForm = ({ onSubmit }: Props) => {
+const SignupForm = ({ onSubmit, isLoading }: Props) => {
   const {
     register,
     handleSubmit,
@@ -54,6 +55,7 @@ const SignupForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.nick?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('nick')}
             />
           </div>
@@ -70,6 +72,7 @@ const SignupForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.email?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('email')}
             />
           </div>
@@ -86,6 +89,7 @@ const SignupForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.password?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('password')}
             />
           </div>
@@ -102,12 +106,17 @@ const SignupForm = ({ onSubmit }: Props) => {
                 'input-bordered input w-full',
                 errors.passwordRepeat?.message && 'input-error'
               )}
+              disabled={isLoading}
               {...register('passwordRepeat')}
             />
           </div>
           <button
             type='submit'
-            className='btn-primary btn w-full font-accent normal-case'
+            className={cx(
+              'btn-primary btn w-full font-accent normal-case',
+              isLoading && 'loading'
+            )}
+            disabled={isLoading}
           >
             {t('actions.signup')}
           </button>
