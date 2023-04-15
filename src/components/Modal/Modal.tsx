@@ -1,7 +1,7 @@
 import cx from 'classix'
 import React, { type ReactNode, useRef } from 'react'
 import { FaTimes } from 'react-icons/fa'
-import { useClickAway } from 'react-use'
+import { useClickAway, useLockBodyScroll } from 'react-use'
 
 type Props = {
   children: ReactNode
@@ -13,6 +13,7 @@ type Props = {
 export const Modal = ({ children, isOpen, onClose, className }: Props) => {
   const ref = useRef(null)
   useClickAway(ref, onClose)
+  useLockBodyScroll(isOpen)
 
   return (
     <div className={cx('modal', isOpen && 'modal-open')}>
