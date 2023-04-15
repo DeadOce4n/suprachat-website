@@ -87,7 +87,7 @@ const useAuth = () => {
     onSuccess: (response) => {
       if (response.success) {
         setUser(response.data)
-        navigate('/verificar')
+        navigate('/app/verificar')
       }
     },
     onError: (error: Error) => {
