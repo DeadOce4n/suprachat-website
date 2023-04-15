@@ -12,7 +12,13 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: 'src/images/icon.png'
+        name: 'SupraChat',
+        icon: 'src/images/favicon.png',
+        short_name: 'SupraChat',
+        start_url: '/',
+        background_color: '#001233',
+        theme_color: '#ffe6dd',
+        display: 'standalone'
       }
     },
     'gatsby-plugin-sharp',
