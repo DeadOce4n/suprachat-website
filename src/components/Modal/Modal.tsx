@@ -1,6 +1,7 @@
 import cx from 'classix'
-import React, { type ReactNode } from 'react'
+import React, { type ReactNode, useRef } from 'react'
 import { FaTimes } from 'react-icons/fa'
+import { useClickAway } from 'react-use'
 
 type Props = {
   children: ReactNode
@@ -9,18 +10,24 @@ type Props = {
   className?: string
 }
 
-export const Modal = ({ children, isOpen, onClose, className }: Props) => (
-  <div className={cx('modal', isOpen && 'modal-open')}>
-    <div
-      className={cx('modal-box relative m-4 h-max', !!className && className)}
-    >
-      <button
-        onClick={onClose}
-        className='btn-primary btn-sm btn-circle btn absolute right-2 top-2'
+export const Modal = ({ children, isOpen, onClose, className }: Props) => {
+  const ref = useRef(null)
+  useClickAway(ref, onClose)
+
+  return (
+    <div className={cx('modal', isOpen && 'modal-open')}>
+      <div
+        ref={ref}
+        className={cx('modal-box relative m-4 h-max', !!className && className)}
       >
-        <FaTimes />
-      </button>
-      {children}
+        <button
+          onClick={onClose}
+          className='btn-primary btn-sm btn-circle btn absolute right-2 top-2'
+        >
+          <FaTimes />
+        </button>
+        {children}
+      </div>
     </div>
-  </div>
-)
+  )
+}
