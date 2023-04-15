@@ -1,3 +1,4 @@
+import { cx } from 'classix'
 import React, { useState } from 'react'
 import { Title } from 'react-head'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +14,7 @@ import useAuth from '@hooks/useAuth'
 import { useUser, useUsers } from '@hooks/useUsers'
 import type { UpdateParams } from '@services/user.service'
 import { BASE_TITLE } from '@utils/const'
-import { cx } from 'classix'
+import { omit } from 'remeda'
 
 const ProfilePage = () => {
   const { userState, token } = useAuth()
@@ -23,7 +24,8 @@ const ProfilePage = () => {
   const { userData } = useUser(userState ? userState._id : '')
   const [isPasswordModalOpen, setPasswordModalOpen] = useState(false)
 
-  const handleSubmit = (params: UpdateParams) => updateUser(params)
+  const handleSubmit = (params: UpdateParams) =>
+    updateUser(params, { onSuccess: () => setPasswordModalOpen(false) })
   const handlePictureUpload = async (file: File) => {
     const formData = new FormData()
     formData.append('file', file)
@@ -95,7 +97,11 @@ const ProfilePage = () => {
         isOpen={isPasswordModalOpen}
         onClose={() => setPasswordModalOpen(false)}
       >
-        <ChangePasswordForm onSubmit={(params) => console.log(params)} />
+        <ChangePasswordForm
+          isLoading={updateUserIsLoading}
+          isVisible={isPasswordModalOpen}
+          onSubmit={(params) => handleSubmit(omit(params, ['passwordRepeat']))}
+        />
       </Modal>
     </>
   )

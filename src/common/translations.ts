@@ -18,7 +18,9 @@ export const esTranslations = {
       successUserUpdate: 'Perfil actualizado correctamente',
       databaseUnavailable: 'Error de conexión, intente más tarde',
       fileTooLarge: 'El archivo es demasiado grande!',
-      uploadProfilePictureSuccess: '¡Foto de perfil actualizada correctamente!'
+      uploadProfilePictureSuccess: '¡Foto de perfil actualizada correctamente!',
+      newPasswordSameAsOld:
+        'La nueva contraseña no puede ser igual a la anterior'
     }
   },
   landing: {

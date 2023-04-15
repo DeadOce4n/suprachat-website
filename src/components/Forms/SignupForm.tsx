@@ -11,7 +11,7 @@ import { userConstants } from '@schemas/userSchema'
 const formSchema = z
   .object({
     nick: z
-      .string()
+      .string({ required_error: 'formSchema.required' })
       .min(userConstants.nickMinLength, { message: 'formSchema.tooSmall' })
       .max(userConstants.nickMaxLength, { message: 'formSchema.tooBig' }),
     password: z

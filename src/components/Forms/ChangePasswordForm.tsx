@@ -1,30 +1,41 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cx } from 'classix'
-import { t } from 'i18next'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 
 import Heading from '@components/Heading'
+import { userConstants } from '@schemas/userSchema'
+import useAuth from '@hooks/useAuth'
 
 const formSchema = z
   .object({
-    password: z.string().min(8),
-    passwordRepeat: z.string().min(8)
+    password: z
+      .string({ required_error: 'formSchema.required' })
+      .min(userConstants.passwordMinLength, { message: 'formSchema.tooSmall' }),
+    passwordRepeat: z
+      .string({ required_error: 'formSchema.required' })
+      .min(userConstants.passwordMinLength, { message: 'formSchema.tooSmall' })
   })
   .refine((values) => values.passwordRepeat === values.password, {
-    message: t('pages.signup.passwordsNotMatch') ?? '',
+    message: 'pages.signup.passwordsNotMatch',
     path: ['passwordRepeat']
   })
 
 type FormData = z.infer<typeof formSchema>
 
 type Props = {
-  onSubmit: (params: FormData) => void
+  onSubmit: (params: FormData & { id: string; token: string }) => void
+  isVisible: boolean
+  isLoading: boolean
 }
 
-export const ChangePasswordForm = ({ onSubmit }: Props) => {
+export const ChangePasswordForm = ({
+  onSubmit,
+  isVisible,
+  isLoading
+}: Props) => {
   const {
     register,
     handleSubmit,
@@ -34,11 +45,18 @@ export const ChangePasswordForm = ({ onSubmit }: Props) => {
     resolver: zodResolver(formSchema)
   })
   const { t } = useTranslation()
+  const { token, userState } = useAuth()
 
   const submitHandler: SubmitHandler<FormData> = (params) => {
-    onSubmit(params)
+    onSubmit({
+      ...params,
+      token: token as string,
+      id: userState?._id as string
+    })
     reset()
   }
+
+  useEffect(() => reset(), [isVisible])
 
   return (
     <>
@@ -50,13 +68,21 @@ export const ChangePasswordForm = ({ onSubmit }: Props) => {
               {t('pages.signup.password')}
               {':'}
             </span>
+            {errors.password && errors.password.message && (
+              <span className='label-text-alt text-error'>
+                {t(errors.password.message, {
+                  count: userConstants.passwordMinLength
+                })}
+              </span>
+            )}
           </label>
           <input
-            type='text'
+            type='password'
             className={cx(
               'input-bordered input w-full',
               errors.password?.message && 'input-error'
             )}
+            disabled={isLoading}
             {...register('password')}
           />
         </div>
@@ -66,6 +92,13 @@ export const ChangePasswordForm = ({ onSubmit }: Props) => {
               {t('pages.signup.passwordRepeat')}
               {':'}
             </span>
+            {errors.passwordRepeat && errors.passwordRepeat.message && (
+              <span className='label-text-alt text-error'>
+                {t(errors.passwordRepeat.message, {
+                  count: userConstants.passwordMinLength
+                })}
+              </span>
+            )}
           </label>
           <input
             type='password'
@@ -73,11 +106,18 @@ export const ChangePasswordForm = ({ onSubmit }: Props) => {
               'input-bordered input w-full',
               errors.passwordRepeat?.message && 'input-error'
             )}
+            disabled={isLoading}
             {...register('passwordRepeat')}
           />
         </div>
         <div className='modal-action'>
-          <button className='btn-primary btn font-accent normal-case'>
+          <button
+            disabled={isLoading}
+            className={cx(
+              'btn-primary btn font-accent normal-case',
+              isLoading && 'loading'
+            )}
+          >
             {t('actions.save')}
           </button>
         </div>

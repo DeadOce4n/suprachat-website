@@ -21,6 +21,7 @@ export type UpdateParams = {
   token: string
   country?: (typeof countries)[number]
   about?: string
+  password?: string
 }
 
 export const updateUser = ({ id, token, ...payload }: UpdateParams) =>
@@ -34,6 +35,7 @@ export type UploadPictureParams = {
   token: string
   payload: FormData
 }
+
 export const uploadPicture = ({ id, token, payload }: UploadPictureParams) =>
   api(
     {
