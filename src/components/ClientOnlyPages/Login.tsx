@@ -20,7 +20,7 @@ const LoginPage = (_props: RouteComponentProps) => {
         name='description'
         content={`Pantalla de inicio de sesión | ${BASE_TITLE}`}
       />
-      <Container variant='thin' className='w-full'>
+      <Container variant='thin'>
         <LoginForm onSubmit={handleLogin} isLoading={loginIsLoading} />
       </Container>
     </>
