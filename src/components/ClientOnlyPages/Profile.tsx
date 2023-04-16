@@ -62,8 +62,7 @@ const ProfilePage = () => {
                 htmlFor='file-input'
                 className={cx(
                   'btn-success btn-xs btn gap-1 font-accent normal-case',
-                  (updateUserIsLoading || uploadIsLoading) &&
-                    'dbtn-disabled loading'
+                  uploadIsLoading && 'dbtn-disabled loading'
                 )}
               >
                 <FaImages />

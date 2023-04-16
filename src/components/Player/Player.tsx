@@ -50,7 +50,7 @@ export const Player = () => {
           <audio ref={audioRef} />
           <input
             type='range'
-            className='range range-primary range-xs md:max-w-[6rem]'
+            className='range range-primary range-xs sm:max-w-[6rem]'
             min={0}
             max={100}
             onChange={(e) => handleVolume(Number(e.target.value))}
