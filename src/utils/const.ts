@@ -1,9 +1,11 @@
 export const API_URL = process.env.GATSBY_API_URL
 export const JWT_ISSUER = process.env.GATSBY_JWT_ISSUER
 export const JWT_AUDIENCE = process.env.GATSBY_JWT_AUDIENCE
-export const BASE_TITLE = process.env.GATSBY_BASE_TITLE ?? ''
+export const BASE_TITLE = process.env.GATSBY_BASE_TITLE
 export const CHAT_URL = process.env.GATSBY_KIWI_URL
 export const CHANNELS = process.env.GATSBY_CHANNELS
+export const RADIO_URL = process.env.GATSBY_RADIO_URL
+export const RADIO_WS = process.env.GATSBY_RADIO_WS
 export const countries = [
   'Albania',
   'Alemania',

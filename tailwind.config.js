@@ -13,6 +13,10 @@ module.exports = {
         sans: ['Manrope', ...defaultTheme.fontFamily.sans],
         accent: ['Poppins', 'sans-serif'],
         logo: ['BabaPro']
+      },
+      colors: {
+        'fg-alt': '#E9E0D7',
+        'bg-alt': '#021027'
       }
     }
   },
@@ -29,8 +33,7 @@ module.exports = {
           info: '#62BDF2',
           success: '#36D399',
           warning: '#FBBD23',
-          error: '#F87272',
-          'fg-alt': '#E9E0D7'
+          error: '#F87272'
         }
       }
     ]

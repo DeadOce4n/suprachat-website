@@ -8,3 +8,8 @@ dayjs.tz.setDefault('America/Tijuana')
 
 export const date = (...params: Parameters<typeof dayjs>) =>
   dayjs(...params).tz(dayjs.tz.guess())
+
+export const getRadioURL = (url: string) =>
+  window.navigator.userAgent.includes('Firefox')
+    ? `${url}?refresh=${Date.now()}`
+    : url

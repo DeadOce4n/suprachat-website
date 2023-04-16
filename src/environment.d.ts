@@ -10,6 +10,8 @@ declare global {
       GATSBY_BASE_TITLE: string
       GATSBY_KIWI_URL: string
       GATSBY_CHANNELS: string
+      GATSBY_RADIO_URL: string
+      GATSBY_RADIO_WS: string
     }
   }
 }

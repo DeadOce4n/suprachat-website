@@ -1,3 +1,4 @@
+import { rawNowPlayingSchema } from '@schemas/nowPlaying'
 import { z } from 'zod'
 
 export const errorSchema = z.object({
@@ -35,3 +36,13 @@ export const createResponseSchema = <TSchema extends z.Schema>(
   ])
 
 export type GenericResponse = z.infer<ReturnType<typeof createResponseSchema>>
+
+export const subscriptionSchema = z.object({
+  channel: z.string(),
+  pub: z.object({
+    data: z.object({
+      np: rawNowPlayingSchema
+    }),
+    offset: z.number()
+  })
+})

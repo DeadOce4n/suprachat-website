@@ -1,6 +1,6 @@
 import type { RawNowPlaying, Song } from '@schemas/nowPlaying'
 
-export default class NowPlaying {
+export class NowPlaying {
   shId: number
   playedAt: number
   duration: number

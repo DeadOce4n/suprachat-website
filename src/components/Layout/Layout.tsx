@@ -14,6 +14,7 @@ import type { Container, Engine } from 'tsparticles-engine'
 import { esTranslations } from '@common/translations'
 import Footer from '@components/Footer'
 import Navbar from '@components/Navbar'
+import { Player } from '@components/Player'
 import particlesConfig from '@utils/particlesConfig'
 import type { Page } from '@utils/types'
 
@@ -60,6 +61,7 @@ const Layout = ({ children }: Props) => {
         />
         <Navbar pages={pages} />
         <main style={{ flex: 1 }}>{children}</main>
+        <Player />
         <Footer name='SupraChat' author='DeadOcean' />
       </div>
       <Toaster position='top-center' />
@@ -74,7 +76,7 @@ const queryClient = new QueryClient()
 export const QueryClientProvider = ({ children }: Props) => {
   return (
     <Provider client={queryClient}>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools position='top-left' />
       {children}
     </Provider>
   )

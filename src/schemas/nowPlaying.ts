@@ -7,9 +7,9 @@ const mountSchema = z.object({
   bitrate: z.number(),
   format: z.string(),
   listeners: z.object({
-    total: z.string(),
-    unique: z.string(),
-    current: z.string()
+    total: z.number(),
+    unique: z.number(),
+    current: z.number()
   }),
   path: z.string(),
   is_default: z.boolean()
