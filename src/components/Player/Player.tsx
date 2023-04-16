@@ -64,7 +64,7 @@ export const Player = () => {
             {nowPlaying.song.text}
           </div>
         ) : (
-          <SyncLoader className='text-primary' color='#FFFFFF' />
+          <SyncLoader color='#FFFFFF' />
         )}
       </div>
       <div className='navbar-end w-full pr-2 sm:w-[50%]'>
@@ -76,7 +76,7 @@ export const Player = () => {
         )}
         <button
           className={cx(
-            'swap-rotate swap btn-primary btn-ghost btn-circle btn absolute right-2 -top-14 text-primary transition-transform',
+            'swap btn-primary btn-ghost swap-rotate btn-circle btn absolute right-2 -top-14 text-primary transition-transform',
             playerVisible && 'swap-active'
           )}
           onClick={togglePlayerVisible}
