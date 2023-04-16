@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import { useLocation } from '@reach/router'
 import { shallow } from 'zustand/shallow'
@@ -32,7 +32,7 @@ export const Navbar = ({ pages }: Props) => {
   const [visible, setVisible] = useState(false)
   const { pathname } = useLocation()
 
-  const toggleVisible = () => setVisible((prev) => !prev)
+  const toggleVisible = useCallback(() => setVisible((prev) => !prev), [])
 
   const actions = {
     register: () => {
@@ -58,7 +58,7 @@ export const Navbar = ({ pages }: Props) => {
   ) => actions[action]
 
   return (
-    <NavbarContainer>
+    <NavbarContainer visible={visible} onClose={toggleVisible}>
       <NavbarStart>
         <Link className='font-logo text-3xl text-primary' to='/'>
           SUPRACHAT

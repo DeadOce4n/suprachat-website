@@ -1,12 +1,23 @@
-import React, { type ReactNode } from 'react'
+import React, { type ReactNode, useRef } from 'react'
+import { useClickAway } from 'react-use'
 
 type Props = {
   children: ReactNode
+  visible: boolean
+  onClose: () => void
 }
 
-export const NavbarContainer = ({ children }: Props) => (
-  <nav
-    className='
+export const NavbarContainer = ({ children, visible, onClose }: Props) => {
+  const ref = useRef(null)
+  useClickAway(ref, () => {
+    if (visible) {
+      onClose()
+    }
+  })
+  return (
+    <nav
+      ref={ref}
+      className='
       mt-2
       mb-4
       flex
@@ -22,7 +33,8 @@ export const NavbarContainer = ({ children }: Props) => (
       md:justify-between
       md:p-6
     '
-  >
-    {children}
-  </nav>
-)
+    >
+      {children}
+    </nav>
+  )
+}
