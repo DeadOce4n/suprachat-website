@@ -12,7 +12,9 @@ export const esTranslations = {
       userNotFound: 'Usuario no encontrado',
       wrongPassword: 'Contraseña incorrecta',
       verificationError: 'La verificación de la cuenta falló',
-      loginSuccessful: 'Bienvenidx de vuelta, {{nick}}'
+      loginSuccessful: 'Bienvenidx de vuelta, {{nick}}',
+      registrationSuccessfull:
+        '¡Registro exitoso! Se ha enviado un código de confirmación a tu correo'
     },
     users: {
       successUserUpdate: 'Perfil actualizado correctamente',
