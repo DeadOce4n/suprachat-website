@@ -13,7 +13,7 @@ import { Modal } from '@components/Modal'
 import useAuth from '@hooks/useAuth'
 import { useUser, useUsers } from '@hooks/useUsers'
 import type { UpdateParams } from '@services/user.service'
-import { BASE_TITLE } from '@utils/const'
+import { BASE_TITLE, DEFAULT_IMG_URL } from '@utils/const'
 import { omit } from 'remeda'
 
 const ProfilePage = () => {
@@ -47,7 +47,7 @@ const ProfilePage = () => {
           <div className='flex w-full flex-col gap-4 md:flex-row md:justify-between'>
             <div className='avatar'>
               <div className='w-48 rounded-full'>
-                <img src={userData?.picture} />
+                <img src={userData?.picture ?? DEFAULT_IMG_URL} />
               </div>
             </div>
             <div className='flex h-max w-max flex-row flex-wrap justify-end gap-2 self-end'>

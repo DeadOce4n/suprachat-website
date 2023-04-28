@@ -12,6 +12,7 @@ declare global {
       GATSBY_CHANNELS: string
       GATSBY_RADIO_URL: string
       GATSBY_RADIO_WS: string
+      GATSBY_DEFAULT_IMG_URL: string
     }
   }
 }

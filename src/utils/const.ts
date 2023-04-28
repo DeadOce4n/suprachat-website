@@ -6,6 +6,7 @@ export const CHAT_URL = process.env.GATSBY_KIWI_URL
 export const CHANNELS = process.env.GATSBY_CHANNELS
 export const RADIO_URL = process.env.GATSBY_RADIO_URL
 export const RADIO_WS = process.env.GATSBY_RADIO_WS
+export const DEFAULT_IMG_URL = process.env.GATSBY_DEFAULT_IMG_URL
 export const countries = [
   'Albania',
   'Alemania',
