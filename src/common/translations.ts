@@ -13,7 +13,7 @@ export const esTranslations = {
       wrongPassword: 'Contraseña incorrecta',
       verificationError: 'La verificación de la cuenta falló',
       loginSuccessful: 'Bienvenidx de vuelta, {{nick}}',
-      registrationSuccessfull:
+      registrationSuccessful:
         '¡Registro exitoso! Se ha enviado un código de confirmación a tu correo'
     },
     users: {
