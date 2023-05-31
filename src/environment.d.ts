@@ -13,6 +13,7 @@ declare global {
       GATSBY_RADIO_URL: string
       GATSBY_RADIO_WS: string
       GATSBY_DEFAULT_IMG_URL: string
+      GATSBY_VERCEL_PROJECT_ID: string
     }
   }
 }

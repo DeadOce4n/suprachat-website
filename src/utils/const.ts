@@ -7,6 +7,7 @@ export const CHANNELS = process.env.GATSBY_CHANNELS
 export const RADIO_URL = process.env.GATSBY_RADIO_URL
 export const RADIO_WS = process.env.GATSBY_RADIO_WS
 export const DEFAULT_IMG_URL = process.env.GATSBY_DEFAULT_IMG_URL
+export const VERCEL_PROJECT_ID = process.env.GATSBY_VERCEL_PROJECT_ID
 export const countries = [
   'Albania',
   'Alemania',
