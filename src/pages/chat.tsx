@@ -1,7 +1,8 @@
 import type { HeadFC } from 'gatsby'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaInfoCircle } from 'react-icons/fa'
+import { toast } from 'react-hot-toast'
 
 import ChatFrame from '@components/ChatFrame'
 import Container from '@components/Container'
@@ -21,7 +22,12 @@ const ChatPage = () => {
     ? envData.data.env['GATSBY_KIWI_URL'] ?? CHAT_URL
     : CHAT_URL
 
-  console.log(chatUrl)
+  const handlePopupClick = () => {
+    setIsModalOpen(true)
+    toast(t('pages.chat.openPopupClick'), {
+      icon: <FaInfoCircle size={24} />
+    })
+  }
 
   const chatFrame = (
     <ChatFrame
@@ -45,7 +51,7 @@ const ChatPage = () => {
             <div className='relative min-h-[80vh] w-full'>
               <button
                 className='btn-primary btn-sm btn-circle btn absolute -top-3 -right-3'
-                onClick={() => setIsModalOpen(true)}
+                onClick={handlePopupClick}
               >
                 <FaExternalLinkAlt />
               </button>
@@ -58,6 +64,7 @@ const ChatPage = () => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         className='p-0 md:max-w-screen-2xl'
+        hideCloseButton
       >
         {chatFrame}
       </Modal>

@@ -8,9 +8,16 @@ type Props = {
   isOpen: boolean
   onClose: () => void
   className?: string
+  hideCloseButton?: boolean
 }
 
-export const Modal = ({ children, isOpen, onClose, className }: Props) => {
+export const Modal = ({
+  children,
+  isOpen,
+  onClose,
+  className,
+  hideCloseButton = false
+}: Props) => {
   const ref = useRef(null)
   useClickAway(ref, onClose)
   useLockBodyScroll(isOpen)
@@ -21,12 +28,14 @@ export const Modal = ({ children, isOpen, onClose, className }: Props) => {
         ref={ref}
         className={cx('modal-box relative m-4 h-max', !!className && className)}
       >
-        <button
-          onClick={onClose}
-          className='btn-primary btn-sm btn-circle btn absolute right-2 top-2'
-        >
-          <FaTimes />
-        </button>
+        {!hideCloseButton ? (
+          <button
+            onClick={onClose}
+            className='btn-primary btn-sm btn-circle btn absolute right-2 top-2'
+          >
+            <FaTimes />
+          </button>
+        ) : null}
         {children}
       </div>
     </div>

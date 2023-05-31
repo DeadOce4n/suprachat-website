@@ -41,7 +41,8 @@ export const esTranslations = {
   pages: {
     chat: {
       title:
-        'Bienvenido a SupraChat! Lee las reglas y el manual de usuario si tienes dudas 😉'
+        'Bienvenido a SupraChat! Lee las reglas y el manual de usuario si tienes dudas 😉',
+      openPopupClick: 'Para cerrar la ventana haz click fuera de ella'
     },
     login: {
       rememberMe: 'Recordarme durante 30 días',
