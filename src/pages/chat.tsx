@@ -44,7 +44,7 @@ const ChatPage = () => {
           ) : (
             <div className='relative min-h-[80vh] w-full'>
               <button
-                className='btn-primary btn-sm btn-circle btn absolute top-2 right-2'
+                className='btn-primary btn-sm btn-circle btn absolute -top-3 -right-3'
                 onClick={() => setIsModalOpen(true)}
               >
                 <FaExternalLinkAlt />
