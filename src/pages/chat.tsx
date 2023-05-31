@@ -9,18 +9,26 @@ import Heading from '@components/Heading'
 import { Modal } from '@components/Modal'
 import useAuth from '@hooks/useAuth'
 import { BASE_TITLE, CHANNELS, CHAT_URL } from '@utils/const'
+import { useExternalEnv } from '@hooks/useExternalEnv'
 
 const ChatPage = () => {
   const { userState } = useAuth()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { t } = useTranslation()
+  const { envData } = useExternalEnv({ field: 'GATSBY_KIWI_URL' })
+
+  const chatUrl = envData?.success
+    ? envData.data.env['GATSBY_KIWI_URL'] ?? CHAT_URL
+    : CHAT_URL
+
+  console.log(chatUrl)
 
   const chatFrame = (
     <ChatFrame
       src={
         userState
-          ? `${CHAT_URL}/?nick=${userState.nick}&channel=${CHANNELS}`
-          : `${CHAT_URL}/?channel=${CHANNELS}`
+          ? `${chatUrl}/?nick=${userState.nick}&channel=${CHANNELS}`
+          : `${chatUrl}/?channel=${CHANNELS}`
       }
       title='Ventana del chat.'
     />
