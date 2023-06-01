@@ -35,7 +35,7 @@ export const signup = (payload: SignupParams) =>
       endpoint: '/auth/signup',
       payload
     },
-    userSchema
+    userSchema.merge(z.object({ token: z.string() }))
   )
 
 export type VerifyParams = {

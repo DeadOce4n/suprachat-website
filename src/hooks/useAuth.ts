@@ -86,7 +86,9 @@ const useAuth = () => {
     mutationFn: authService.signup,
     onSuccess: (response) => {
       if (response.success) {
-        setUser(response.data)
+        const user = decodeToken(response.data.token, userSchema)
+        setUser(user)
+        setToken(response.data.token)
         toast.success(t(`hooks.auth.${response.messageKey}`))
         navigate('/app/verificar')
       }
