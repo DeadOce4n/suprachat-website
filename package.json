@@ -15,7 +15,7 @@
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write src/",
-    "lint": "eslint --fix src/**/*.{ts,tsx}"
+    "lint": "eslint --fix --ext=.ts,.tsx ."
   },
   "dependencies": {
     "@fontsource/manrope": "^4.5.13",
@@ -68,6 +68,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "gatsby-plugin-postcss": "^6.8.0",
     "gatsby-plugin-tsconfig-paths": "^1.0.6",
