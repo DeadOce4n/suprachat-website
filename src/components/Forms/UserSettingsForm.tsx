@@ -69,7 +69,7 @@ const UserDataForm = ({ data, onSubmit, isLoading }: Props) => {
       <div className='flex flex-row justify-end'>
         <button
           className={cx(
-            'btn-primary btn font-accent normal-case',
+            'btn-primary btn w-full font-accent normal-case sm:w-max',
             isLoading && 'loading'
           )}
           type='submit'
