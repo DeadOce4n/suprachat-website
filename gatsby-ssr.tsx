@@ -24,6 +24,11 @@ export const onPreRenderHTML = ({
       key='css-reset'
       rel='stylesheet'
       href='https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/'
+    />,
+    <meta
+      key='viewport'
+      name='viewport'
+      content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
     />
   ])
 }
