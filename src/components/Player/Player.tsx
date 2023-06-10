@@ -47,6 +47,7 @@ export const Player = () => {
               <FaPlayCircle size={28} />
             )}
           </button>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <audio ref={audioRef} />
           <input
             type='range'
