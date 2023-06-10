@@ -26,7 +26,10 @@ export const Modal = ({
     <div className={cx('modal', isOpen && 'modal-open')}>
       <div
         ref={ref}
-        className={cx('modal-box relative m-4 h-max', !!className && className)}
+        className={cx(
+          'modal-box relative h-max max-h-screen',
+          !!className && className
+        )}
       >
         {!hideCloseButton ? (
           <button
