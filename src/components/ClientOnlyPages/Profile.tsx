@@ -47,7 +47,14 @@ const ProfilePage = () => {
           <div className='flex w-full flex-col gap-4 md:flex-row md:justify-between'>
             <div className='avatar'>
               <div className='w-48 rounded-full'>
-                <img src={userData?.picture ?? DEFAULT_IMG_URL} />
+                <img
+                  src={userData?.picture ?? DEFAULT_IMG_URL}
+                  alt={
+                    t('pages.profile.userProfilePic', {
+                      nick: userData?.nick
+                    }) as string
+                  }
+                />
               </div>
             </div>
             <div className='flex h-max w-max flex-row flex-wrap justify-end gap-2 self-end'>

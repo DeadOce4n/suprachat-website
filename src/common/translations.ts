@@ -68,7 +68,8 @@ export const esTranslations = {
       whichCountry: '¿De qué país eres?',
       tellUsAboutYou: 'Cuéntanos más sobre ti',
       changePassword: 'Cambiar contraseña',
-      changeProfilePic: 'Cambiar foto'
+      changeProfilePic: 'Cambiar foto',
+      userProfilePic: 'Foto de perfil de {{nick}}'
     }
   },
   actions: {
