@@ -8,6 +8,7 @@ import { z } from 'zod'
 import Heading from '@components/Heading'
 import { userConstants } from '@schemas/userSchema'
 import useAuth from '@hooks/useAuth'
+import { FaSave } from 'react-icons/fa'
 
 const formSchema = z
   .object({
@@ -79,7 +80,7 @@ export const ChangePasswordForm = ({
           <input
             type='password'
             className={cx(
-              'input-bordered input w-full',
+              'input-bordered input-primary input w-full',
               errors.password?.message && 'input-error'
             )}
             disabled={isLoading}
@@ -103,7 +104,7 @@ export const ChangePasswordForm = ({
           <input
             type='password'
             className={cx(
-              'input-bordered input w-full',
+              'input-bordered input-primary input w-full',
               errors.passwordRepeat?.message && 'input-error'
             )}
             disabled={isLoading}
@@ -113,11 +114,13 @@ export const ChangePasswordForm = ({
         <div className='modal-action'>
           <button
             disabled={isLoading}
-            className={cx(
-              'btn-primary btn font-accent normal-case',
-              isLoading && 'loading'
-            )}
+            className={cx('btn-primary btn font-accent normal-case')}
           >
+            {isLoading ? (
+              <span className='loading loading-spinner loading-sm' />
+            ) : (
+              <FaSave />
+            )}
             {t('actions.save')}
           </button>
         </div>

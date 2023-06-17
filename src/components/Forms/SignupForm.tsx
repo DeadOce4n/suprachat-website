@@ -71,7 +71,7 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='text'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.nick?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -93,7 +93,7 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='email'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.email?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -117,14 +117,14 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='password'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.password?.message && 'input-error'
               )}
               disabled={isLoading}
               {...register('password')}
             />
           </div>
-          <div className='form-control'>
+          <div className='form-control mb-4'>
             <label className='label'>
               <span className='label-text font-accent font-bold'>
                 {t('pages.signup.passwordRepeat')}
@@ -141,7 +141,7 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='password'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.passwordRepeat?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -150,13 +150,14 @@ const SignupForm = ({ onSubmit, isLoading }: Props) => {
           </div>
           <button
             type='submit'
-            className={cx(
-              'btn-primary btn w-full font-accent normal-case',
-              isLoading && 'loading'
-            )}
+            className={cx('btn-primary btn w-full font-accent normal-case')}
             disabled={isLoading}
           >
-            {t('actions.signup')}
+            {isLoading ? (
+              <span className='loading loading-spinner' />
+            ) : (
+              t('actions.signup')
+            )}
           </button>
         </div>
       </form>

@@ -1,0 +1,129 @@
+image: node:18-slim
+
+stages:
+  - quality
+  - build
+  - deploy
+
+.snippets:
+  npm:
+    - npm set cache .npm/
+  vercel:
+    - npm i -g vercel
+
+install:
+  stage: quality
+  before_script:
+    - !reference [.snippets, npm]
+  script:
+    - npm ci --prefer-offline
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
+    - if: $CI_PIPELINE_SOURCE == 'web'
+  tags:
+    - suprachat
+
+lint:
+  stage: quality
+  before_script:
+    - !reference [.snippets, npm]
+    - npm ci --prefer-offline
+  script:
+    - npm run lint:check
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
+    - if: $CI_PIPELINE_SOURCE == 'web'
+  tags:
+    - suprachat
+
+typecheck:
+  stage: quality
+  before_script:
+    - !reference [.snippets, npm]
+    - npm ci --prefer-offline
+  script:
+    - npm run typecheck
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
+    - if: $CI_PIPELINE_SOURCE == 'web'
+  tags:
+    - suprachat
+
+format:
+  stage: quality
+  before_script:
+    - !reference [.snippets, npm]
+    - npm ci --prefer-offline
+  script:
+    - npm run format:check
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
+    - if: $CI_PIPELINE_SOURCE == 'web'
+  tags:
+    - suprachat
+
+deploy-preview:
+  stage: build
+  before_script:
+    - !reference [.snippets, vercel]
+  script:
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --token=$VERCEL_TOKEN
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  tags:
+    - suprachat
+
+deploy-production:
+  stage: build
+  before_script:
+    - !reference [.snippets, vercel]
+  script:
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_REF_PROTECTED == "true"
+  tags:
+    - suprachat

@@ -246,7 +246,7 @@ const ManualPage = () => (
         hablar durante dos minutos. Los comandos de esta función son los
         siguientes:
       </p>
-      <ul className='ml-8 mb-4 list-disc'>
+      <ul className='mb-4 ml-8 list-disc'>
         <li>
           <Code>!bw activar</Code>: con este comando se activa la moderación de
           palabras en la sala.
@@ -374,7 +374,7 @@ const ManualPage = () => (
         siempre por la web, así que aquí les dejamos los datos necesarios para
         conectarse:
       </p>
-      <ul className='ml-8 mb-4 list-disc'>
+      <ul className='mb-4 ml-8 list-disc'>
         <li>
           Servidor: <Code>irc.suprachat.net</Code>
         </li>

@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLHeadingElement> {
 
 const Heading = ({ children, variant = 'h1', className, ...props }: Props) => {
   const classes = cx(
-    'font-accent font-bold text-primary mb-2',
+    'mb-2 font-accent font-bold text-primary',
     variant === 'h1' && 'text-3xl',
     variant === 'h2' && 'text-2xl',
     variant === 'h3' && 'text-xl',

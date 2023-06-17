@@ -60,7 +60,7 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='text'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.code?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -70,13 +70,14 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
           <input type='hidden' {...register('userId')} />
           <button
             type='submit'
-            className={cx(
-              'btn-primary btn w-full font-accent normal-case',
-              isLoading && 'loading'
-            )}
+            className={cx('btn-primary btn w-full font-accent normal-case')}
             disabled={isLoading}
           >
-            {t('actions.verify')}
+            {isLoading ? (
+              <span className='loading loading-spinner' />
+            ) : (
+              t('actions.verify')
+            )}
           </button>
         </div>
       </form>

@@ -1,5 +1,5 @@
 import cx from 'classix'
-import React, { type ReactNode, useRef } from 'react'
+import React, { type ReactNode, useRef, useEffect } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useClickAway, useLockBodyScroll } from 'react-use'
 
@@ -18,14 +18,24 @@ export const Modal = ({
   className,
   hideCloseButton = false
 }: Props) => {
-  const ref = useRef(null)
-  useClickAway(ref, onClose)
+  const ref = useRef<HTMLDialogElement>(null)
+  const contentRef = useRef(null)
+
   useLockBodyScroll(isOpen)
+  useClickAway(contentRef, onClose)
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.showModal()
+    } else {
+      ref.current?.close()
+    }
+  }, [isOpen])
 
   return (
-    <div className={cx('modal', isOpen && 'modal-open')}>
+    <dialog ref={ref} className='modal backdrop:bg-modal-backdrop'>
       <div
-        ref={ref}
+        ref={contentRef}
         className={cx(
           'modal-box relative h-max max-h-screen',
           !!className && className
@@ -41,6 +51,6 @@ export const Modal = ({
         ) : null}
         {children}
       </div>
-    </div>
+    </dialog>
   )
 }

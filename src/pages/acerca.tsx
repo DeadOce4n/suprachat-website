@@ -54,8 +54,8 @@ const MemberInfo = ({ children }: GenericProps) => (
       items-center
       justify-center
       gap-1
-      pt-8
       pb-12
+      pt-8
     '
   >
     {children}

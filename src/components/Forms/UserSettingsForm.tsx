@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
+import { cx } from 'classix'
+import { FaSave } from 'react-icons/fa'
 
 import type { User } from '@schemas/userSchema'
 import { countries } from '@utils/const'
 import useAuth from '@hooks/useAuth'
-import { cx } from 'classix'
 
 const formSchema = z.object({
   country: z.optional(z.enum(countries)),
@@ -45,7 +46,7 @@ const UserDataForm = ({ data, onSubmit, isLoading }: Props) => {
           <span className='label-text'>{t('pages.profile.whichCountry')}</span>
         </label>
         <select
-          className='select-bordered select'
+          className='select-bordered select-primary select'
           disabled={isLoading}
           {...register('country')}
         >
@@ -61,7 +62,7 @@ const UserDataForm = ({ data, onSubmit, isLoading }: Props) => {
           </span>
         </label>
         <textarea
-          className='textarea-bordered textarea'
+          className='textarea-bordered textarea-primary textarea'
           disabled={isLoading}
           {...register('about')}
         />
@@ -69,12 +70,16 @@ const UserDataForm = ({ data, onSubmit, isLoading }: Props) => {
       <div className='flex flex-row justify-end'>
         <button
           className={cx(
-            'btn-primary btn w-full font-accent normal-case sm:w-max',
-            isLoading && 'loading'
+            'btn-primary btn w-full font-accent normal-case sm:w-max'
           )}
           type='submit'
           disabled={isLoading}
         >
+          {isLoading ? (
+            <span className='loading loading-spinner loading-sm' />
+          ) : (
+            <FaSave />
+          )}
           {t('actions.save')}
         </button>
       </div>

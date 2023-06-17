@@ -77,7 +77,8 @@ export const Player = () => {
         )}
         <button
           className={cx(
-            'swap btn-primary btn-ghost swap-rotate btn-circle btn absolute right-2 -top-14 text-primary transition-transform',
+            'btn-primary btn-ghost btn-circle btn absolute -top-14 right-2',
+            'swap-rotate swap text-primary transition-transform',
             playerVisible && 'swap-active'
           )}
           onClick={togglePlayerVisible}
