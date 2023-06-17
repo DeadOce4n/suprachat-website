@@ -16,7 +16,8 @@ module.exports = {
       },
       colors: {
         'fg-alt': '#E9E0D7',
-        'bg-alt': '#021027'
+        'bg-alt': '#021027',
+        'modal-backdrop': 'rgb(148 163 184  / 0.2)'
       }
     }
   },

@@ -61,7 +61,7 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='text'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.username?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -85,7 +85,7 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
             <input
               type='password'
               className={cx(
-                'input-bordered input w-full',
+                'input-bordered input-primary input w-full',
                 errors.password?.message && 'input-error'
               )}
               disabled={isLoading}
@@ -107,13 +107,14 @@ const LoginForm = ({ onSubmit, isLoading }: Props) => {
           </div>
           <button
             type='submit'
-            className={cx(
-              'btn-primary btn w-full font-accent normal-case',
-              isLoading && 'loading'
-            )}
+            className={cx('btn-primary btn w-full font-accent normal-case')}
             disabled={isLoading}
           >
-            {t('actions.login')}
+            {isLoading ? (
+              <span className='loading loading-spinner' />
+            ) : (
+              t('actions.login')
+            )}
           </button>
         </div>
       </form>

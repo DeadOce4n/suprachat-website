@@ -50,7 +50,7 @@ const ChatPage = () => {
           ) : (
             <div className='relative min-h-[80vh] w-full'>
               <button
-                className='btn-primary btn-sm btn-circle btn absolute -top-3 -right-3'
+                className='btn-primary btn-sm btn-circle btn absolute -right-3 -top-3'
                 onClick={handlePopupClick}
               >
                 <FaExternalLinkAlt />

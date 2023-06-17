@@ -79,8 +79,8 @@ export const Navbar = ({ pages }: Props) => {
               <Link to='/app/perfil' onClick={toggleVisible}>
                 <span
                   className='
-                    btn-primary
                     btn-ghost
+                    btn-primary
                     btn
                     flex
                     items-center
@@ -98,7 +98,7 @@ export const Navbar = ({ pages }: Props) => {
               </Link>
             )}{' '}
             <button
-              className='btn-outline btn-primary btn w-full border-2 font-accent normal-case md:w-max'
+              className='btn-primary btn-outline btn w-full border-2 font-accent normal-case md:w-max'
               onClick={handleClickButton('logout')}
             >
               Cerrar sesión
@@ -108,7 +108,7 @@ export const Navbar = ({ pages }: Props) => {
           <>
             {pathname !== '/app/login/' && (
               <button
-                className='btn-outline btn-primary btn w-full border-2 font-accent normal-case md:w-max'
+                className='btn-primary btn-outline btn w-full border-2 font-accent normal-case md:w-max'
                 onClick={handleClickButton('login')}
               >
                 Iniciar sesión

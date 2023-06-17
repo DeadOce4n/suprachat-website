@@ -14,8 +14,10 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write src/",
-    "lint": "eslint --fix --ext=.ts,.tsx ."
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint --fix --ext=.ts,.tsx .",
+    "lint:check": "eslint --ext=.ts,.tsx ."
   },
   "dependencies": {
     "@fontsource/manrope": "^4.5.13",
@@ -25,7 +27,7 @@
     "@tanstack/react-query": "^4.24.4",
     "@tanstack/react-query-devtools": "^4.24.4",
     "classix": "^2.1.24",
-    "daisyui": "^2.51.5",
+    "daisyui": "^3.1.1",
     "dayjs": "^1.11.7",
     "gatsby": "^5.5.0",
     "gatsby-plugin-image": "^3.5.0",
@@ -73,17 +75,16 @@
     "gatsby-plugin-postcss": "^6.8.0",
     "gatsby-plugin-tsconfig-paths": "^1.0.6",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.1",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.3",
-    "prettier-plugin-tailwindcss": "^0.2.5",
-    "tailwindcss": "^3.2.7",
+    "lint-staged": "^13.2.2",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5"
   },
   "lint-staged": {
-    "*.ts?(x)": [
+    "*.{ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write --config=prettier.config.js"
     ]
   },
   "commitlint": {

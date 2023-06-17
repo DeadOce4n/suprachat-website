@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Title } from 'react-head'
 import { useTranslation } from 'react-i18next'
 import { FaImages, FaLock } from 'react-icons/fa'
-import { SyncLoader } from 'react-spinners'
+import { omit } from 'remeda'
 
 import { ChangePasswordForm } from '@components/Forms/ChangePasswordForm'
 import UserDataForm from '@components/Forms/UserSettingsForm'
@@ -13,7 +13,6 @@ import useAuth from '@hooks/useAuth'
 import { useUser, useUsers } from '@hooks/useUsers'
 import type { UpdateParams } from '@services/user.service'
 import { BASE_TITLE, DEFAULT_IMG_URL } from '@utils/const'
-import { omit } from 'remeda'
 
 const ProfilePage = () => {
   const { userState, token } = useAuth()
@@ -71,10 +70,14 @@ const ProfilePage = () => {
                   htmlFor='file-input'
                   className={cx(
                     'btn-success btn-xs btn gap-1 font-accent normal-case',
-                    uploadIsLoading && 'btn-disabled loading'
+                    uploadIsLoading && 'btn-disabled'
                   )}
                 >
-                  <FaImages />
+                  {uploadIsLoading ? (
+                    <span className='loading loading-spinner loading-xs' />
+                  ) : (
+                    <FaImages />
+                  )}
                   {t('pages.profile.changeProfilePic')}
                 </label>
                 <input
@@ -94,8 +97,8 @@ const ProfilePage = () => {
                   isLoading={updateUserIsLoading || uploadIsLoading}
                 />
               ) : (
-                <div className='flex h-[80vh] w-full items-center justify-center'>
-                  <SyncLoader className='text-primary' color='#FFFFFF' />
+                <div className='flex h-48 w-full items-center justify-center'>
+                  <span className='loading loading-spinner loading-lg text-primary' />
                 </div>
               )}
             </div>

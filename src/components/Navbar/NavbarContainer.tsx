@@ -18,8 +18,8 @@ export const NavbarContainer = ({ children, visible, onClose }: Props) => {
     <nav
       ref={ref}
       className='
-      mt-2
       mb-4
+      mt-2
       flex
       w-full
       flex-col
