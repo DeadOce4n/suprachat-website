@@ -1,6 +1,7 @@
-image: node:18-slim
+image: node:18-bookworm
 
 stages:
+  - install
   - quality
   - build
   - deploy
@@ -12,7 +13,7 @@ stages:
     - npm i -g vercel
 
 install:
-  stage: quality
+  stage: install
   before_script:
     - !reference [.snippets, npm]
   script:
