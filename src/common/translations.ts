@@ -14,7 +14,8 @@ export const esTranslations = {
       verificationError: 'La verificación de la cuenta falló',
       loginSuccessful: 'Bienvenidx de vuelta, {{nick}}',
       registrationSuccessful:
-        '¡Registro exitoso! Se ha enviado un código de confirmación a tu correo'
+        '¡Registro exitoso! Se ha enviado un código de confirmación a tu correo',
+      duplicateNick: "El nick {{nick}} ya se encuentra en uso"
     },
     users: {
       successUserUpdate: 'Perfil actualizado correctamente',
