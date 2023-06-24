@@ -16,7 +16,7 @@ export const fetchEnvVar = ({ field }: FetchEnvVarParams) => {
   return api(
     {
       method: 'GET',
-      endpoint: `/misc/get-env?${query}`
+      endpoint: `/misc/env?${query}`
     },
     z.object({ env: z.record(z.string()) })
   )

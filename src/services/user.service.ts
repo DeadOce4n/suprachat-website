@@ -40,7 +40,7 @@ export const uploadPicture = ({ id, token, payload }: UploadPictureParams) =>
   api(
     {
       method: 'POST',
-      endpoint: `/users/${id}/upload-profile-picture`,
+      endpoint: `/users/${id}/picture`,
       payload,
       auth: { token }
     },
