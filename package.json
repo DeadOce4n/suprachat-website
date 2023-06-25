@@ -17,7 +17,8 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
     "lint": "eslint --fix --ext=.ts,.tsx .",
-    "lint:check": "eslint --ext=.ts,.tsx ."
+    "lint:check": "eslint --ext=.ts,.tsx .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@fontsource/manrope": "^4.5.13",
