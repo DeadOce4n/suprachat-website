@@ -108,9 +108,9 @@ const useAuth = () => {
         navigate('/')
       }
     },
-    onError: (error: Error, data) => {
+    onError: (error: Error) => {
       if (error instanceof APIError) {
-        toast.error(t(`hooks.auth.${error.message}`, { data }))
+        toast.error(t(`hooks.auth.${error.message}`))
       }
     }
   })
