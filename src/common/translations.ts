@@ -15,7 +15,7 @@ export const esTranslations = {
       loginSuccessful: 'Bienvenidx de vuelta, {{nick}}',
       registrationSuccessful:
         '¡Registro exitoso! Se ha enviado un código de confirmación a tu correo',
-      duplicateNick: "El nick {{nick}} ya se encuentra en uso"
+      duplicateNick: 'El nick {{nick}} ya se encuentra en uso'
     },
     users: {
       successUserUpdate: 'Perfil actualizado correctamente',
