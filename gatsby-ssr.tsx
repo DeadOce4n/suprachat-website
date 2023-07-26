@@ -1,19 +1,22 @@
-import React from 'react'
+import type { GatsbySSR } from 'gatsby'
+import type { ReactElement } from 'react'
 import { HeadProvider } from 'react-head'
-import './src/styles/global.css'
 
 import Layout, { QueryClientProvider } from './src/components/Layout/Layout'
+import './src/styles/global.css'
 
-const headTags = []
+const headTags: ReactElement[] = []
 
-export const wrapPageElement = ({ element }) => <Layout>{element}</Layout>
-export const wrapRootElement = ({ element }) => (
+export const wrapPageElement: GatsbySSR['wrapPageElement'] = ({ element }) => (
+  <Layout>{element}</Layout>
+)
+export const wrapRootElement: GatsbySSR['wrapRootElement'] = ({ element }) => (
   <HeadProvider headTags={headTags}>
     <QueryClientProvider>{element}</QueryClientProvider>
   </HeadProvider>
 )
 
-export const onPreRenderHTML = ({
+export const onPreRenderHTML: GatsbySSR['onPreRenderHTML'] = ({
   getHeadComponents,
   replaceHeadComponents
 }) => {

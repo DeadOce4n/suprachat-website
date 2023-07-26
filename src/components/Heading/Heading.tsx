@@ -1,4 +1,4 @@
-import React, { type ReactNode, type HTMLAttributes } from 'react'
+import type { ReactNode, HTMLAttributes } from 'react'
 import { cx } from 'classix'
 
 interface Props extends HTMLAttributes<HTMLHeadingElement> {

@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import { lazy } from 'react'
 import { Router, type RouteComponentProps } from '@reach/router'
 
 import { PrivateRoute, createLazyRoute } from '@components/PrivateRoute'

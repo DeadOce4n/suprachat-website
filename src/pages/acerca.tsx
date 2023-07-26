@@ -1,6 +1,6 @@
 import { Link, type HeadFC } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
-import React, { type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import Container from '@components/Container'

@@ -1,4 +1,3 @@
-import React from 'react'
 import type { HeadFC } from 'gatsby'
 
 import Container from '@components/Container/Container'

@@ -1,5 +1,5 @@
 import { cx } from 'classix'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Title } from 'react-head'
 import { useTranslation } from 'react-i18next'
 import { FaImages, FaLock } from 'react-icons/fa'

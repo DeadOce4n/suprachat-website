@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Link, navigate } from 'gatsby'
 import { useLocation } from '@reach/router'
 import { shallow } from 'zustand/shallow'

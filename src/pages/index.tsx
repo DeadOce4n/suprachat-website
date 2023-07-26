@@ -1,4 +1,3 @@
-import React from 'react'
 import { navigate, type HeadFC, type PageProps } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useTranslation } from 'react-i18next'

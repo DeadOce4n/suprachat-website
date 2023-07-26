@@ -33,7 +33,8 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-tsconfig-paths',
     'gatsby-plugin-postcss'
-  ]
+  ],
+  jsxRuntime: 'automatic'
 }
 
 export default config

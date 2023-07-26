@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, type HeadFC } from 'gatsby'
 import { FaInfoCircle } from 'react-icons/fa'
 

@@ -1,4 +1,4 @@
-import React, { type JSXElementConstructor, Suspense } from 'react'
+import { type JSXElementConstructor, type ComponentType, Suspense } from 'react'
 import { navigate } from 'gatsby'
 import type { RouteComponentProps } from '@reach/router'
 
@@ -28,7 +28,7 @@ const PrivateRoute = ({ component: Component, location, ...rest }: Props) => {
 export default PrivateRoute
 
 export const createLazyRoute = <T extends RouteComponentProps>(
-  RouteComponent: React.ComponentType<T>,
+  RouteComponent: ComponentType<T>,
   displayName = RouteComponent.displayName
 ) => {
   const component = (props: T) => {

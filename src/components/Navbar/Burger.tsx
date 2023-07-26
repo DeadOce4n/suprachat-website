@@ -1,5 +1,4 @@
 import { cx } from 'classix'
-import React from 'react'
 import { FaTimes, FaBars } from 'react-icons/fa'
 
 type Props = {

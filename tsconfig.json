@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "lib": ["dom", "esnext"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -33,5 +33,12 @@
       "@common/*": ["common/*"]
     }
   },
-  "include": ["./src/**/*", "./gatsby-node.ts", "./gatsby-config.ts", "./plugins/**/*"]
+  "include": [
+    "./src/**/*",
+    "./gatsby-node.ts",
+    "./gatsby-config.ts",
+    "./plugins/**/*",
+    "./gatsby-browser.tsx",
+    "./gatsby-ssr.tsx"
+  ]
 }

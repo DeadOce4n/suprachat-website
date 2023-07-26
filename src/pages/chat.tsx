@@ -1,5 +1,5 @@
 import type { HeadFC } from 'gatsby'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaExternalLinkAlt, FaInfoCircle } from 'react-icons/fa'
 import { toast } from 'react-hot-toast'

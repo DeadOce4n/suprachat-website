@@ -1,4 +1,3 @@
-import React from 'react'
 import type { RouteComponentProps } from '@reach/router'
 import { omit } from 'remeda'
 import type { HeadFC } from 'gatsby'

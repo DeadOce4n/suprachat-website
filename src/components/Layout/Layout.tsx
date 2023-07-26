@@ -4,7 +4,7 @@ import {
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import i18n from 'i18next'
-import React, { useCallback, type ReactNode } from 'react'
+import { useCallback, type ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { initReactI18next } from 'react-i18next'
 import Particles from 'react-particles'

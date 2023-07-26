@@ -1,4 +1,4 @@
-import React, { type ReactNode, useRef } from 'react'
+import { type ReactNode, useRef } from 'react'
 import { useClickAway } from 'react-use'
 
 type Props = {

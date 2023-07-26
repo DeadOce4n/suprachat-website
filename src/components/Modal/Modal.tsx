@@ -1,5 +1,5 @@
 import cx from 'classix'
-import React, { type ReactNode, useRef, useEffect } from 'react'
+import { type ReactNode, useRef, useEffect } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useClickAway, useLockBodyScroll } from 'react-use'
 

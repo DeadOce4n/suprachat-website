@@ -1,4 +1,3 @@
-import React from 'react'
 import { cx } from 'classix'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
