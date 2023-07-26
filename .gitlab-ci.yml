@@ -1,4 +1,4 @@
-image: node:18-bookworm
+image: node:18-bookworm-slim
 
 stages:
   - install
@@ -44,6 +44,7 @@ lint:
         - package-lock.json
     paths:
       - .npm/
+    policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
@@ -64,6 +65,7 @@ typecheck:
         - package-lock.json
     paths:
       - .npm/
+    policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
@@ -84,6 +86,7 @@ format:
         - package-lock.json
     paths:
       - .npm/
+    policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_PIPELINE_SOURCE == 'push'
@@ -105,6 +108,7 @@ deploy-preview:
         - package-lock.json
     paths:
       - .npm/
+    policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   tags:
@@ -124,6 +128,7 @@ deploy-production:
         - package-lock.json
     paths:
       - .npm/
+    policy: pull
   rules:
     - if: $CI_PIPELINE_SOURCE == 'push' && $CI_COMMIT_REF_PROTECTED == "true"
   tags:
